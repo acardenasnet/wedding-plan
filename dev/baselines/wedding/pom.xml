@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                      http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<parent>
+		<groupId>net.acardenas</groupId>
+		<artifactId>jee</artifactId>
+		<version>5.0</version>
+		<relativePath>../jee</relativePath>
+	</parent>
+
+	<groupId>net.acardenas.wedding</groupId>
+	<artifactId>baseline</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<properties>
+		<wedding.version>1.0-SNAPSHOT</wedding.version>
+		<wedding.api.version>1.0-SNAPSHOT</wedding.api.version>
+		<wedding.ejb.version>1.0-SNAPSHOT</wedding.ejb.version>
+		<wedding.web.version>1.0-SNAPSHOT</wedding.web.version>
+	</properties>
+
+  <organization>
+    <name>Alejandro Cardenas</name>
+    <url>https://code.google.com/p/wedding-plan</url>
+  </organization>
+  <issueManagement>
+    <system>TR-Tool</system>
+    <url>https://code.google.com/p/wedding-plan/issues/list</url>
+  </issueManagement>
+
+  <build>
+    <pluginManagement>
+       <plugins>
+         <plugin>
+    				<artifactId>jaxws-maven-plugin</artifactId>
+    				<version>1.10</version>
+         </plugin>       
+       </plugins>
+    </pluginManagement>
+  </build>
+
+	<dependencyManagement>
+		<dependencies>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+            <dependency>
+      <groupId>org.glassfish</groupId>
+      <artifactId>javax.ejb</artifactId>
+    </dependency>
+		<dependency>
+      <groupId>javax.xml.bind</groupId>
+      <artifactId>jaxb-api</artifactId>
+		</dependency>
+	</dependencies>
+</project>
