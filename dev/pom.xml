@@ -13,5 +13,6 @@
   <modules>
       <module>baselines</module>
       <module>common</module>
+      <module>backend</module>      
   </modules>
 </project>
