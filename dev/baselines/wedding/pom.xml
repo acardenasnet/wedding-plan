@@ -18,6 +18,7 @@
 	<properties>
 		<wedding.version>1.0-SNAPSHOT</wedding.version>
 		<wedding.api.version>1.0-SNAPSHOT</wedding.api.version>
+    <wedding.impl.version>1.0-SNAPSHOT</wedding.impl.version>    
 		<wedding.ejb.version>1.0-SNAPSHOT</wedding.ejb.version>
 		<wedding.web.version>1.0-SNAPSHOT</wedding.web.version>
 	</properties>
