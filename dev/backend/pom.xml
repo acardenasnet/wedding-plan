@@ -12,6 +12,9 @@
 
   <modules>
     <module>dataservice</module>
+    <module>api</module>
+    <module>impl</module>
+    <module>beans</module>
   </modules>
 </project>
 
