@@ -1,4 +1,4 @@
-package net.acardenas.wedding.dataservice;
+package net.acardenas.wedding.dataservice.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
