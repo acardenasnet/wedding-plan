@@ -11,6 +11,9 @@ import net.acardenas.wedding.dataservice.enums.GromsType;
 public class Grooms 
     extends Guest
 {
+
+    private static final long serialVersionUID = -2788641573123090801L;
+    
     @Enumerated(EnumType.STRING)
     private GromsType type;
     @ManyToOne

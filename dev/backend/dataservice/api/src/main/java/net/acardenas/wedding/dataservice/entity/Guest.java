@@ -15,4 +15,14 @@ public class Guest extends User
         // empty
     }
 
+    public int getQuantity()
+    {
+        return quantity;
+    }
+
+    public void setQuantity(int aQuantity)
+    {
+        quantity = aQuantity;
+    }
+
 }

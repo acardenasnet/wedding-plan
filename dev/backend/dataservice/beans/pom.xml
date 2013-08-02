@@ -17,7 +17,10 @@
   <name>WEDDING DATASERVICE INTERNAL BEANS</name>
 
   <dependencies>
-
-
+		<dependency>
+			<groupId>net.acardenas.wedding.dataservice</groupId>
+			<artifactId>dataservice-impl</artifactId>
+			<version>${wedding.impl.version}</version>
+		</dependency>
   </dependencies>
 </project>
