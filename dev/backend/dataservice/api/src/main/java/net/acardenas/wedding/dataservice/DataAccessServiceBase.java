@@ -3,13 +3,23 @@ package net.acardenas.wedding.dataservice;
 public interface DataAccessServiceBase<T>
 {
     /**
+     * Returns the type that is handled by this handler. This type is equal to
+     * the type as specified in the generic part of this class. This method is
+     * required runtime because the generic information is not available
+     * anymore at that time.
+     * 
+     * @return the handled type.
+     */
+    Class<T> handles();
+    
+    /**
      * Stores an instance of the entity class in the database
      * 
      * @param T
      *            Object
      * @return
      */
-    public T create(T t);
+    T create(T t);
     
     /**
      * Retrieves an entity instance that was previously persisted to the
@@ -20,5 +30,5 @@ public interface DataAccessServiceBase<T>
      * @param id
      * @return
      */
-    public T find(Object id);
+    T find(Object id);
 }

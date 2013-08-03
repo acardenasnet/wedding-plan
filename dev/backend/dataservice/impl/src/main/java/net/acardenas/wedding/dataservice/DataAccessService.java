@@ -8,26 +8,13 @@ import net.acardenas.wedding.dataservice.entity.User;
 public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
 {
 
-    @PersistenceContext
+    @PersistenceContext(name = "weddingPU")
     private EntityManager entityManager;
 
     /** Constructor . */
     public DataAccessService()
     {
         
-    }
-
-    private Class<T> type;
-
-    /**
-     * Default constructor
-     * 
-     * @param aType
-     *            entity class
-     */
-    public DataAccessService(Class<T> aType)
-    {
-        type = aType;
     }
 
     @Override
@@ -42,7 +29,7 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
     @Override
     public T find(Object id)
     {
-        return this.entityManager.find(this.type, id);
+        return this.entityManager.find(handles(), id);
     }
 
     /**
@@ -53,7 +40,7 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
      */
     public void delete(Object id)
     {
-        Object ref = this.entityManager.getReference(this.type, id);
+        Object ref = this.entityManager.getReference(handles(), id);
         this.entityManager.remove(ref);
     }
 
