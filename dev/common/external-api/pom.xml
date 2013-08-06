@@ -14,7 +14,7 @@
   <artifactId>common-external-api</artifactId>
   <version>${wedding.api.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING COMMON EXTERNAL API</name>
+  <name>WEDDING COMMON EXTERNAL API (JAR)</name>
 
   <dependencies>
     <!-- Public API projects should not have any 3PP dependencies! -->

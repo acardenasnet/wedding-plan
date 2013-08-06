@@ -14,7 +14,7 @@
   <artifactId>dataservice-ejb</artifactId>
   <version>${wedding.ejb.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING DATASERVICE INTERNAL BEANS</name>
+  <name>WEDDING DATASERVICE INTERNAL BEANS (EJB)</name>
 
   <dependencies>
 		<dependency>

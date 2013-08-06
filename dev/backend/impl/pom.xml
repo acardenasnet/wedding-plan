@@ -14,7 +14,7 @@
   <artifactId>backend-impl</artifactId>
   <version>${wedding.impl.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING BACKEND INTERNAL IMPL</name>
+  <name>WEDDING BACKEND INTERNAL IMPL (JAR)</name>
 
   <dependencies>
 

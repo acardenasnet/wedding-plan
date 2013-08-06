@@ -14,7 +14,7 @@
 	<artifactId>dataservice-api</artifactId>
 	<version>${wedding.api.version}</version>
 	<packaging>jar</packaging>
-	<name>WEDDING DATASERVICE INTERNAL API</name>
+	<name>WEDDING DATASERVICE INTERNAL API (JAR)</name>
 
 	<dependencies>
 		<dependency>

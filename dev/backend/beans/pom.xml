@@ -14,7 +14,7 @@
   <artifactId>backend-ejb</artifactId>
   <version>${wedding.ejb.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING BACKEND INTERNAL BEANS</name>
+  <name>WEDDING BACKEND INTERNAL BEANS (EJB)</name>
 
   <dependencies>
 

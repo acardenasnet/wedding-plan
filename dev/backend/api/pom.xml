@@ -14,7 +14,7 @@
   <artifactId>backend-api</artifactId>
   <version>${wedding.api.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING BACKEND INTERNAL API</name>
+  <name>WEDDING BACKEND INTERNAL API (JAR)</name>
 
   <dependencies>
 

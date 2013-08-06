@@ -14,7 +14,7 @@
   <artifactId>common-internal-api</artifactId>
   <version>${wedding.api.version}</version>
   <packaging>jar</packaging>
-  <name>WEDDING COMMON INTERNAL API</name>
+  <name>WEDDING COMMON INTERNAL API (JAR)</name>
 
   <dependencies>
     <dependency>
