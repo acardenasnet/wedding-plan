@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>net.acardenas.wedding</groupId>
+    <artifactId>baseline</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../../baselines/wedding</relativePath>
+  </parent>
+
+  <groupId>net.acardenas.wedding</groupId>
+  <artifactId>application</artifactId>
+  <version>${wedding.version}</version>
+  <packaging>ear</packaging>
+  <name>WEDDING APPLICATION (EAR)</name>
+
+    <dependencies>
+        <dependency>
+              <groupId>net.acardenas.wedding.dataservice</groupId>
+              <artifactId>dataservice-ejb</artifactId>
+              <version>${wedding.ejb.version}</version>
+            <type>ejb</type>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <plugins>
+			<!--
+				Configure EAR plug-in, defined in parent pom, for including ejb
+				modules
+			-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-ear-plugin</artifactId>
+                <configuration>
+                    <defaultJavaBundleDir>APP-INF/lib</defaultJavaBundleDir>
+                    <displayName>Wedding Beans Module</displayName>
+                    <description>
+                       This module only can be deployed if was purched to make the wedding planner.
+                    </description>
+                    <finalName>wedding_service</finalName>
+                    <version>5</version>
+                    <modules>
+                        <ejbModule>
+                          <groupId>net.acardenas.wedding.dataservice</groupId>
+                          <artifactId>dataservice-ejb</artifactId>
+                        </ejbModule>
+                    </modules>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>
