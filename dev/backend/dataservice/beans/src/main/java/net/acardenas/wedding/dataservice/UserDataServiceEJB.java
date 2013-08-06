@@ -1,12 +1,12 @@
 package net.acardenas.wedding.dataservice;
 
 import javax.annotation.PostConstruct;
-import javax.ejb.EJB;
 import javax.ejb.Remote;
+import javax.ejb.Stateless;
 
 import net.acardenas.wedding.dataservice.entity.User;
 
-@EJB
+@Stateless
 @Remote(UserDataService.class)
 public class UserDataServiceEJB implements UserDataService<User>
 {
