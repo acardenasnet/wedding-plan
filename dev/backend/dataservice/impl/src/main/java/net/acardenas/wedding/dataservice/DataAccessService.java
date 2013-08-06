@@ -1,14 +1,12 @@
 package net.acardenas.wedding.dataservice;
 
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import net.acardenas.wedding.dataservice.entity.User;
 
 public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
 {
 
-    @PersistenceContext(name = "weddingPU")
     private EntityManager entityManager;
 
     /** Constructor . */
@@ -16,6 +14,16 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
     {
         
     }
+    
+    public EntityManager getEntityManager()
+    {
+        return entityManager;
+    }
+
+    public void setEntityManager(EntityManager anEntityManager)
+    {
+        entityManager = anEntityManager;
+    }    
 
     @Override
     public T create(T t)
