@@ -1,5 +1,6 @@
 package net.acardenas.wedding.dataservice.entity;
 
+import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -8,6 +9,7 @@ import javax.persistence.ManyToOne;
 import net.acardenas.wedding.dataservice.enums.GromsType;
 
 @Entity
+@DiscriminatorValue(value = "W")
 public class Grooms 
     extends Guest
 {

@@ -1,12 +1,10 @@
 package net.acardenas.wedding.dataservice.entity;
 
-import java.io.Serializable;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class Address extends BaseEntity implements Serializable
+public class Address extends BaseEntity
 {
 
     private static final long serialVersionUID = -5089900447558483228L;
