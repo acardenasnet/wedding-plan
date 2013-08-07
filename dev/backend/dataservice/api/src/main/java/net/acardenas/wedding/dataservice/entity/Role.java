@@ -3,8 +3,10 @@ package net.acardenas.wedding.dataservice.entity;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
+@Entity
 public class Role extends BaseEntity implements Serializable
 {
     private static final long serialVersionUID = 8776361482125696661L;
