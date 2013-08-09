@@ -10,9 +10,21 @@
 // agreement/contract under which the program(s) have been supplied.
 // ---------------------------------------------------------------------------
 
-package net.acardenas.wedding.dataservice;
+package net.acardenas.wedding.backend;
 
-public interface UserDataService<T> extends DataAccessServiceBase<T>
+import java.util.List;
+
+import net.acardenas.wedding.dataservice.entity.User;
+
+public interface UserService 
 {
-    
+	void createUser(User aUser);
+	
+	User readUser(Integer anId);
+	
+	List<User> readUsers(List<Integer> anIds);
+	
+	User updateUser(User aUser);
+	
+	boolean deleteUser(User aUser);
 }
