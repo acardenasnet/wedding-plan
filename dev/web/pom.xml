@@ -1,0 +1,72 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<properties>
+		
+		<maven.build.timestamp.format>yyyyMMdd_HHmmss</maven.build.timestamp.format>
+		<timestamp>${maven.build.timestamp}</timestamp>
+
+	</properties>
+	
+  <parent>
+    <groupId>net.acardenas.wedding</groupId>
+    <artifactId>baseline</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <relativePath>../../baselines/wedding</relativePath>
+  </parent>
+
+
+	<name>WEDDING JSF WEB USER INTERFACE</name>
+	<groupId>net.acardenas.wedding.web</groupId>
+	<artifactId>wedding-web</artifactId>
+	<version>${wedding.web.version}</version>
+	<packaging>war</packaging>
+
+	<dependencies>
+        <dependency>
+            <groupId>javax</groupId>
+            <artifactId>javaee-api</artifactId>
+            <version>6.0</version>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.sun.faces</groupId>
+			<artifactId>jsf-impl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+	</dependencies>
+
+	<build>
+		<plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <displayName>Wedding Web Application</displayName>
+                    <description>
+                       Wedding Web Application (GUI). This module may only be deployed if the optional feature has been purchased.
+                    </description>
+                    <warName>wedding_web_${timestamp}</warName>
+                </configuration>
+            </plugin>		
+		    <plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-eclipse-plugin</artifactId>
+		        <configuration>
+		            <additionalProjectFacets>
+		              <jst.jsf>2.0</jst.jsf>
+		            </additionalProjectFacets>
+		        </configuration>
+		    </plugin>
+		</plugins>
+	</build>
+</project>
