@@ -9,6 +9,7 @@ import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
@@ -125,6 +126,19 @@ public class HelloBean implements Serializable
 
             e.printStackTrace();
         }
+        return "hello";
+    }
+    
+    public String logout()
+    {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
+                .getExternalContext().getSession(false);
+
+        if (session != null)
+        {
+            session.invalidate();
+        }
+
         return "hello";
     }
 }
