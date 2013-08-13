@@ -16,7 +16,7 @@
  
 	<!-- Welcome page -->
 	<welcome-file-list>
-		<welcome-file>faces/hello.xhtml</welcome-file>
+		<welcome-file>faces/login.xhtml</welcome-file>
 	</welcome-file-list>
  
 	<!-- JSF mapping -->
@@ -48,8 +48,8 @@
 		<auth-method>FORM</auth-method>
 		<realm-name>proRealm</realm-name>
 		<form-login-config>
-			<form-login-page>/hello.xhtml</form-login-page>
-			<form-error-page>/hello.xhtml</form-error-page>
+			<form-login-page>/login.xhtml</form-login-page>
+			<form-error-page>/login.xhtml</form-error-page>
 		</form-login-config>
 	</login-config>
 	<security-role>

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpSession;
 
 @ManagedBean
 @SessionScoped
-public class HelloBean implements Serializable
+public class LoginBean implements Serializable
 {
 
     private static final long serialVersionUID = 1L;

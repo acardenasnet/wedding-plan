@@ -9,13 +9,13 @@
 	<h3>JSF 2.0 + Ajax Hello World Example</h3>
 
 	<h:form>
-		<h:inputText id="name" value="#{helloBean.name}"></h:inputText>
+		<h:inputText id="name" value="#{loginBean.name}"></h:inputText>
 		<h:commandButton value="Welcome Me">
 			<f:ajax execute="name" render="output" />
 		</h:commandButton>
 
 		<h2>
-			<h:outputText id="output" value="#{helloBean.sayWelcome}" />
+			<h:outputText id="output" value="#{loginBean.sayWelcome}" />
 		</h2>
 	</h:form>
 
@@ -27,10 +27,10 @@
 
 			<h:panelGrid columns="2">
 				<h:outputText value="Username : "></h:outputText>
-				<h:inputText id="username" value="#{helloBean.username}"></h:inputText>
+				<h:inputText id="username" value="#{loginBean.username}"></h:inputText>
 				<h:outputText value="Password : "></h:outputText>
-				<h:inputSecret id="password" value="#{helloBean.password}"></h:inputSecret>
-				<h:commandButton value="Submit" action="#{helloBean.login}" 
+				<h:inputSecret id="password" value="#{loginBean.password}"></h:inputSecret>
+				<h:commandButton value="Submit" action="#{loginBean.login}" 
 					type="submit"></h:commandButton>
 				<h:commandButton value="Clear" type="reset"></h:commandButton>
 				<!--  h:commandLink value="Register" action=Registration.xhtml"></h:commandLink -->
