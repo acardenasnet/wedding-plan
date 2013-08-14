@@ -14,5 +14,8 @@
             <redirect />
         </navigation-case>
     </navigation-rule>
+    <lifecycle>
+        <phase-listener>org.omnifaces.eventlistener.ResetInputAjaxActionListener</phase-listener>
+    </lifecycle>
 
 </faces-config>

@@ -2,9 +2,11 @@ package net.acardenas.wedding.web.util;
 
 import java.util.logging.Logger;
 
+import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
+@Default
 public class LoggerProducer
 {
 

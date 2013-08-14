@@ -7,7 +7,7 @@
 		<maven.build.timestamp.format>yyyyMMdd_HHmmss</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
 		<javax-faces-api-version>2.1</javax-faces-api-version>
-        <omnifaces-version>1.4.1</omnifaces-version>		
+        <omnifaces-version>1.5</omnifaces-version>		
 		<primefaces-version>3.4.2</primefaces-version>
         <primefaces-themes-artifact>afterwork</primefaces-themes-artifact>
         <primefaces-themes-version>1.0.8</primefaces-themes-version>
@@ -58,9 +58,16 @@
 			<artifactId>${primefaces-themes-artifact}</artifactId>
 			<version>${primefaces-themes-version}</version>
 		</dependency>
-
-     
-
+        <dependency>
+            <groupId>org.omnifaces</groupId>
+            <artifactId>omnifaces</artifactId>
+            <version>${omnifaces-version}</version>
+        </dependency>		
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2</version>
+		</dependency>
 	</dependencies>
 
 	<build>
