@@ -7,7 +7,10 @@
 	id="WebApp_ID" version="2.5">
  
 	<display-name>JavaServerFaces</display-name>
- 
+     <context-param>
+        <param-name>primefaces.THEME</param-name>
+        <param-value>aristo</param-value>
+    </context-param>
 	<!-- Change to "Production" when you are ready to deploy -->
 	<context-param>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
@@ -65,5 +68,9 @@
 		<error-code>403</error-code>
 		<location>/ErrorAccessDenied.xhtml</location>
 	</error-page>
+    <error-page>
+        <exception-type>javax.faces.application.ViewExpiredException</exception-type>
+        <location>/Login.xhtml</location>
+    </error-page>	
  
 </web-app>

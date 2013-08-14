@@ -6,7 +6,11 @@
 		
 		<maven.build.timestamp.format>yyyyMMdd_HHmmss</maven.build.timestamp.format>
 		<timestamp>${maven.build.timestamp}</timestamp>
-
+		<javax-faces-api-version>2.1</javax-faces-api-version>
+        <omnifaces-version>1.4.1</omnifaces-version>		
+		<primefaces-version>3.4.2</primefaces-version>
+        <primefaces-themes-artifact>afterwork</primefaces-themes-artifact>
+        <primefaces-themes-version>1.0.8</primefaces-themes-version>
 	</properties>
 	
   <parent>
@@ -42,6 +46,20 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
 		</dependency>
+
+		<!-- PrimeFaces -->
+		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>${primefaces-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>${primefaces-themes-artifact}</artifactId>
+			<version>${primefaces-themes-version}</version>
+		</dependency>
+
+     
 
 	</dependencies>
 

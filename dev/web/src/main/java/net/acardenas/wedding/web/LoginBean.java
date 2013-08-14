@@ -1,24 +1,32 @@
 package net.acardenas.wedding.web;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.security.Principal;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
+import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import net.acardenas.wedding.web.util.Resources;
+
 @ManagedBean
 @SessionScoped
-public class LoginBean implements Serializable
+public class LoginBean implements Serializable, Resources
 {
 
     private static final long serialVersionUID = 1L;
-
-    private String name;
+    
+    @Inject
+    private transient Logger logger;
     private String username;
     private String password;
 
@@ -42,92 +50,106 @@ public class LoginBean implements Serializable
         this.password = password;
     }
 
-    public String getName()
-    {
-        return name;
-    }
+    /**
+     * Listen for button clicks on the #{loginController.login} action,
+     * validates the username and password entered by the user and navigates to
+     * the appropriate page.
+     *
+     * @param actionEvent
+     */
+    public void login(ActionEvent actionEvent) {
 
-    public void setName(String name)
-    {
-        this.name = name;
-    }
-
-    public String getSayWelcome()
-    {
-        // check if null?
-        if ("".equals(name) || name == null)
-        {
-            return "";
-        }
-        else
-        {
-            return "Ajax message : Welcome " + name;
-        }
-    }
-
-    public String login()
-    {
-        String message = "";
-
-        HttpServletRequest request = (HttpServletRequest) FacesContext
-                .getCurrentInstance().getExternalContext().getRequest();
-
-        try
-        {
-
-            // Login via the Servlet Context
-
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+        try {
+            String navigateString = "";
+            // Checks if username and password are valid if not throws a ServletException
             request.login(username, password);
-
-            // Retrieve the Principal
-
+            // gets the user principle and navigates to the appropriate page
             Principal principal = request.getUserPrincipal();
-
-            // Display a message based on the User role
-
-            if (request.isUserInRole("Administrator"))
-            {
-
-                message = "Username : "
-                        + principal.getName()
-                        + " You are an Administrator, you can really f**k things up now";
-
+            if (request.isUserInRole("Administrator")) {
+                navigateString = "/admin/AdminHome.xhtml";
+            } else if (request.isUserInRole("Manager")) {
+                navigateString = "/manager/ManagerHome.xhtml";
+            } else if (request.isUserInRole("User")) {
+                navigateString = "/user/UserHome.xhtml";
             }
-            else if (request.isUserInRole("Manager"))
-            {
-
-                message = "Username : "
-                        + principal.getName()
-                        + " You are only a Manager, Don't you have a Spreadsheet to be working on??";
-
+            try {
+                logger.log(Level.INFO, "User ({0}) loging in #" , request.getUserPrincipal().getName());
+                context.getExternalContext().redirect(request.getContextPath() + "/welcome.xhtml");
+            } catch (IOException ex) {
+                logger.log(Level.SEVERE, "IOException, Login Controller" + "Username : " + principal.getName(), ex);
+                context.addMessage(null, new FacesMessage("Error!", "Exception occured"));
             }
-            else if (request.isUserInRole("Guest"))
-            {
-                message = "Username : " + principal.getName()
-                        + " You're wasting my resources...";
-
-            }
-
-            // Add the welcome message to the faces context
-            FacesContext.getCurrentInstance()
-                    .addMessage(
-                            null,
-                            new FacesMessage(FacesMessage.SEVERITY_INFO,
-                                    message, null));
-
-            return "welcome";
+        } catch (ServletException e) {
+            logger.log(Level.SEVERE, e.toString());
+            context.addMessage(null, new FacesMessage("Error!", "The username or password you provided does not match our records."));
         }
-        catch (ServletException e)
-        {
-            FacesContext.getCurrentInstance().addMessage(
-                    null,
-                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
-                            "An Error Occured: Login failed", null));
-
-            e.printStackTrace();
-        }
-        return "hello";
     }
+    
+//    public String login(ActionEvent actionEvent)
+//    {
+//        String message = "";
+//
+//        HttpServletRequest request = (HttpServletRequest) FacesContext
+//                .getCurrentInstance().getExternalContext().getRequest();
+//
+//        try
+//        {
+//
+//            // Login via the Servlet Context
+//
+//            request.login(username, password);
+//
+//            // Retrieve the Principal
+//
+//            Principal principal = request.getUserPrincipal();
+//
+//            // Display a message based on the User role
+//
+//            if (request.isUserInRole("Administrator"))
+//            {
+//
+//                message = "Username : "
+//                        + principal.getName()
+//                        + " You are an Administrator, you can really f**k things up now";
+//
+//            }
+//            else if (request.isUserInRole("Manager"))
+//            {
+//
+//                message = "Username : "
+//                        + principal.getName()
+//                        + " You are only a Manager, Don't you have a Spreadsheet to be working on??";
+//
+//            }
+//            else if (request.isUserInRole("Guest"))
+//            {
+//                message = "Username : " + principal.getName()
+//                        + " You're wasting my resources...";
+//
+//            }
+//
+//            // Add the welcome message to the faces context
+//            FacesContext.getCurrentInstance()
+//                    .addMessage(
+//                            null,
+//                            new FacesMessage(FacesMessage.SEVERITY_INFO,
+//                                    message, null));
+//
+//            return "welcome";
+//        }
+//        catch (ServletException e)
+//        {
+//            FacesContext.getCurrentInstance().addMessage(
+//                    null,
+//                    new FacesMessage(FacesMessage.SEVERITY_ERROR,
+//                            "An Error Occured: Login failed", null));
+//
+//            e.printStackTrace();
+//        }
+//        return LOGIN_NAV;
+//    }
     
     public String logout()
     {
@@ -139,6 +161,6 @@ public class LoginBean implements Serializable
             session.invalidate();
         }
 
-        return "hello";
+        return LOGIN_NAV;
     }
 }
