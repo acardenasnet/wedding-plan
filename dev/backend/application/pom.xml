@@ -23,6 +23,13 @@
               <version>${wedding.ejb.version}</version>
             <type>ejb</type>
         </dependency>
+        
+        <dependency>
+              <groupId>net.acardenas.wedding.backend</groupId>
+              <artifactId>backend-ejb</artifactId>
+              <version>${wedding.ejb.version}</version>
+            <type>ejb</type>
+        </dependency>        
     </dependencies>
 
     <build>
@@ -48,6 +55,10 @@
                           <groupId>net.acardenas.wedding.dataservice</groupId>
                           <artifactId>dataservice-ejb</artifactId>
                         </ejbModule>
+                        <ejbModule>
+                          <groupId>net.acardenas.wedding.backend</groupId>
+                          <artifactId>backend-ejb</artifactId>
+                        </ejbModule>                        
                     </modules>
                 </configuration>
             </plugin>

@@ -10,7 +10,7 @@
 // agreement/contract under which the program(s) have been supplied.
 // ---------------------------------------------------------------------------
 
-package net.acardenas.wedding.web.util;
+package net.acardenas.wedding.util;
 
 import java.util.logging.Logger;
 
@@ -29,7 +29,6 @@ public class LoggerProducer
     @Produces
     public Logger produceLogger(InjectionPoint injectionPoint)
     {
-        System.out.println("produceLogger");
         return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }
 }
