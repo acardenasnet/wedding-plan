@@ -16,8 +16,11 @@
   <packaging>jar</packaging>
   <name>WEDDING BACKEND INTERNAL BEANS (EJB)</name>
 
-  <dependencies>
-
-
-  </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>net.acardenas.wedding.backend</groupId>
+			<artifactId>backend-impl</artifactId>
+			<version>${wedding.impl.version}</version>
+		</dependency>
+	</dependencies>
 </project>

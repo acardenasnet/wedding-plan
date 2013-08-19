@@ -10,50 +10,58 @@
 // agreement/contract under which the program(s) have been supplied.
 // ---------------------------------------------------------------------------
 
-package net.acardenas.wedding.backend.impl;
+package net.acardenas.wedding.backend.ejb;
 
 import java.util.List;
 
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
+
 import net.acardenas.wedding.backend.UserService;
+import net.acardenas.wedding.backend.UserServiceLocator;
+import net.acardenas.wedding.backend.impl.UserServiceImpl;
 import net.acardenas.wedding.dataservice.entity.User;
 
-public class UserServiceImpl
+@Remote(UserService.class)
+@Stateless(mappedName = UserServiceLocator.JNDI_NAME)
+public class UserServiceEJB
     implements UserService
 {
+    private UserService delegate;
 
     @Override
     public void createUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        
+        // empty
+    }
+    
+    void init()
+    {
+        UserServiceImpl myUserServiceImpl = new UserServiceImpl();
+        delegate = myUserServiceImpl;
     }
 
     @Override
     public User readUser(Integer anId)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.readUser(anId);
     }
 
     @Override
     public List<User> readUsers(List<Integer> anIds)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.readUsers(anIds);
     }
 
     @Override
     public User updateUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.updateUser(aUser);
     }
 
     @Override
     public boolean deleteUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        return false;
+        return delegate.deleteUser(aUser);
     }
-
 }

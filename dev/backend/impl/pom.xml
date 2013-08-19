@@ -16,12 +16,11 @@
   <packaging>jar</packaging>
   <name>WEDDING BACKEND INTERNAL IMPL (JAR)</name>
 
-  <dependencies>
+	<dependencies>
 		<dependency>
 			<groupId>net.acardenas.wedding.backend</groupId>
 			<artifactId>backend-api</artifactId>
 			<version>${wedding.api.version}</version>
 		</dependency>
-
-  </dependencies>
+	</dependencies>
 </project>
