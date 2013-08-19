@@ -88,7 +88,7 @@ public class LoginBean implements Serializable, Resources
             }
             try {
                 logger.log(Level.INFO, "User ({0}) loging in #" , request.getUserPrincipal().getName());
-                context.getExternalContext().redirect(request.getContextPath() + "/welcome.xhtml");
+                context.getExternalContext().redirect(request.getContextPath() + navigateString);
             } catch (IOException ex) {
                 logger.log(Level.SEVERE, "IOException, Login Controller" + "Username : " + principal.getName(), ex);
                 context.addMessage(null, new FacesMessage("Error!", "Exception occured"));
