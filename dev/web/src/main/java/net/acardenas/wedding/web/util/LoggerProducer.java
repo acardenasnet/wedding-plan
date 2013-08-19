@@ -10,7 +10,7 @@
 // agreement/contract under which the program(s) have been supplied.
 // ---------------------------------------------------------------------------
 
-package net.acardenas.wedding.util;
+package net.acardenas.wedding.web.util;
 
 import java.util.logging.Logger;
 
