@@ -36,8 +36,11 @@ import javax.persistence.OneToOne;
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR, name = "userType")
 @DiscriminatorValue(value = "U")
-@NamedQueries({ @NamedQuery(name = User.ALL, query = "SELECT u FROM User u "),
-        @NamedQuery(name = User.TOTAL, query = "SELECT COUNT(u) FROM User u") })
+@NamedQueries
+({ 
+    @NamedQuery(name = User.ALL, query = "SELECT u FROM User u "),
+    @NamedQuery(name = User.TOTAL, query = "SELECT COUNT(u) FROM User u") 
+})
 public class User extends BaseEntity
 {
 

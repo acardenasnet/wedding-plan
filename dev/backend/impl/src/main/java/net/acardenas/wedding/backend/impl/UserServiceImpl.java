@@ -15,24 +15,29 @@ package net.acardenas.wedding.backend.impl;
 import java.util.List;
 
 import net.acardenas.wedding.backend.UserService;
+import net.acardenas.wedding.dataservice.UserDataService;
 import net.acardenas.wedding.dataservice.entity.User;
 
 public class UserServiceImpl
     implements UserService
 {
+    private UserDataService<User> userDataService;
+    
+    public void setUserDataService(UserDataService<User> aUserDataService)
+    {
+        userDataService = aUserDataService;
+    }
 
     @Override
     public void createUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        
+        userDataService.create(aUser);
     }
 
     @Override
     public User readUser(Integer anId)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return userDataService.find(anId);
     }
 
     @Override

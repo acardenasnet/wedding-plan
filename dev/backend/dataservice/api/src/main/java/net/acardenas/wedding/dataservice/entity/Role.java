@@ -16,8 +16,11 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQueries({@NamedQuery(name = Role.ALL, query = "SELECT r FROM Role r")})
 public class Role extends BaseEntity
 {
     private static final long serialVersionUID = 8776361482125696661L;

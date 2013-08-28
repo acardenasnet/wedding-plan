@@ -12,7 +12,11 @@
 
 package net.acardenas.wedding.dataservice;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import net.acardenas.wedding.dataservice.entity.User;
 
@@ -52,12 +56,7 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
         return this.entityManager.find(handles(), id);
     }
 
-    /**
-     * Removes the record that is associated with the entity instance
-     * 
-     * @param type
-     * @param id
-     */
+    @Override
     public void delete(Object id)
     {
         Object ref = this.entityManager.getReference(handles(), id);
@@ -108,4 +107,45 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
         return (T) this.entityManager.merge(item);
 
     }
+    
+    @Override
+    public List<T> findWithNamedQuery(String namedQueryName) 
+    {
+        return entityManager.createNamedQuery(namedQueryName,handles()).getResultList();
+    }    
+
+    /**
+     * Returns the number of records with result limit
+     * @param queryName
+     * @param resultLimit
+     * @return List
+     */
+    public List findWithNamedQuery(String queryName, int resultLimit) {
+        return this.entityManager.createNamedQuery(queryName).
+                setMaxResults(resultLimit).
+                getResultList();
+    }    
+    
+    /**
+     * Returns the number of records that will be used with lazy loading / pagination 
+     * @param namedQueryName
+     * @param start
+     * @param end
+     * @return List
+     */
+    public List<T> findWithNamedQuery(String namedQueryName, 
+            int start, int end) 
+    {
+        TypedQuery<T> query = entityManager.createNamedQuery(namedQueryName, handles());
+        query.setMaxResults(end - start);
+        query.setFirstResult(start);
+        return query.getResultList();
+    }
+    
+    @Override
+    public int countTotalRecord(String namedQueryName) {
+        Query query = entityManager.createNamedQuery(namedQueryName);
+        Number result = (Number) query.getSingleResult();
+        return result.intValue();
+    }    
 }

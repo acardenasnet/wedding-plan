@@ -77,19 +77,31 @@ public class LoginBean implements Serializable, Resources
             String navigateString = "";
             // Checks if username and password are valid if not throws a ServletException
             request.login(username, password);
+            
             // gets the user principle and navigates to the appropriate page
             Principal principal = request.getUserPrincipal();
-            if (request.isUserInRole("Administrator")) {
+            if (request.isUserInRole("Administrator")) 
+            {
                 navigateString = "/admin/AdminHome.xhtml";
-            } else if (request.isUserInRole("Manager")) {
+            } 
+            else if (request.isUserInRole("Manager")) 
+            {
                 navigateString = "/manager/ManagerHome.xhtml";
-            } else if (request.isUserInRole("User")) {
+            } 
+            else if (request.isUserInRole("User")) 
+            {
                 navigateString = "/user/UserHome.xhtml";
             }
-            try {
-                logger.log(Level.INFO, "User ({0}) loging in #" , request.getUserPrincipal().getName());
+            
+            try 
+            {
+                logger.log(Level.INFO, "User ({0}) loging in #" , principal.getName());
+                logger.log(Level.INFO, "Role Administrator ({0})  #" , request.isUserInRole("Administrator"));
+
                 context.getExternalContext().redirect(request.getContextPath() + navigateString);
-            } catch (IOException ex) {
+            } 
+            catch (IOException ex) 
+            {
                 logger.log(Level.SEVERE, "IOException, Login Controller" + "Username : " + principal.getName(), ex);
                 context.addMessage(null, new FacesMessage("Error!", "Exception occured"));
             }

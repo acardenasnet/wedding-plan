@@ -29,10 +29,16 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>net.acardenas.wedding.common</groupId>
-			<artifactId>common-internal-api</artifactId>
+			<groupId>net.acardenas.wedding.dataservice</groupId>
+			<artifactId>dataservice-api</artifactId>
 			<version>${wedding.api.version}</version>
 		</dependency>
+		
+		<dependency>
+			<groupId>net.acardenas.wedding.backend</groupId>
+			<artifactId>backend-api</artifactId>
+			<version>${wedding.api.version}</version>
+		</dependency>		
 			
         <dependency>
             <groupId>javax</groupId>

@@ -12,6 +12,10 @@
 
 package net.acardenas.wedding.dataservice;
 
+import java.util.List;
+
+import javax.persistence.Query;
+
 public interface DataAccessServiceBase<T>
 {
     /**
@@ -43,4 +47,36 @@ public interface DataAccessServiceBase<T>
      * @return
      */
     T find(Object id);
+    
+    /**
+     * Removes the record that is associated with the entity instance
+     * 
+     * @param type
+     * @param id
+     */
+    void delete(Object id);
+    
+    /**
+     * Returns the number of records that meet the criteria
+     * @param namedQueryName
+     * @return List
+     */
+    public List<T> findWithNamedQuery(String namedQueryName);
+    
+    /**
+     * Returns the number of records that will be used with lazy loading / pagination 
+     * @param namedQueryName
+     * @param start
+     * @param end
+     * @return List
+     */
+    public List<T> findWithNamedQuery(String namedQueryName, int start, int end);
+    
+    /**
+     * Returns the number of total records
+     * @param namedQueryName
+     * @return int
+     */
+    public int countTotalRecord(String namedQueryName);
+
 }

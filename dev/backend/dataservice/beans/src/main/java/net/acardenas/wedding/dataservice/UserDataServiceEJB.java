@@ -12,6 +12,9 @@
 
 package net.acardenas.wedding.dataservice;
 
+import java.util.List;
+import java.util.logging.Logger;
+
 import javax.annotation.PostConstruct;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
@@ -21,11 +24,12 @@ import javax.persistence.PersistenceContext;
 import net.acardenas.wedding.dataservice.entity.User;
 import net.acardenas.wedding.util.WeddingConstants;
 
-@Stateless
+@Stateless(mappedName = UserDataServiceLocator.JNDI_NAME)
 @Remote(UserDataService.class)
 public class UserDataServiceEJB implements UserDataService<User>
 {
     private UserDataService<User> delegate;
+    private static final Logger LOG = Logger.getLogger(UserDataServiceEJB.class.getName());
     
     @PersistenceContext(name = WeddingConstants.PERSISTENCE_CONTEXT_NAME)
     private EntityManager entityManager;
@@ -61,4 +65,29 @@ public class UserDataServiceEJB implements UserDataService<User>
         return delegate.handles();
     }
 
+    @Override
+    public void delete(Object id)
+    {
+        delegate.delete(id);
+    }
+
+    @Override
+    public List<User> findWithNamedQuery(String namedQueryName)
+    {
+        return delegate.findWithNamedQuery(namedQueryName);
+    }
+
+    @Override
+    public List<User> findWithNamedQuery(String namedQueryName, int start,
+            int end)
+    { 
+        LOG.info("findWithNamedQuery");
+        return delegate.findWithNamedQuery(namedQueryName, start, end);
+    }
+
+    @Override
+    public int countTotalRecord(String namedQueryName)
+    {
+        return delegate.countTotalRecord(namedQueryName);
+    }
 }
