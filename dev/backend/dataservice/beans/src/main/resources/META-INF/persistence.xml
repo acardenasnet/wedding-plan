@@ -11,6 +11,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<class>net.acardenas.wedding.dataservice.entity.Role</class>
 		<class>net.acardenas.wedding.dataservice.entity.Address</class>
 		<properties>
+			<property name="eclipselink.weaving" value="false"/>
 			<property name="eclipselink.ddl-generation" value="create-tables" />
 		    <property name="eclipselink.logging.level.sql" value="FINE"/>
             <property name="eclipselink.logging.parameters" value="true"/>
