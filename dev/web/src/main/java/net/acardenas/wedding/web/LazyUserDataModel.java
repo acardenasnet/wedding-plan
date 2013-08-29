@@ -6,8 +6,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import javax.inject.Inject;
-
 import net.acardenas.wedding.dataservice.UserDataService;
 import net.acardenas.wedding.dataservice.entity.User;
 import net.acardenas.wedding.web.util.LazySorter;

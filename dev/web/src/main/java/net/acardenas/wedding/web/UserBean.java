@@ -1,6 +1,7 @@
 package net.acardenas.wedding.web;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,6 +12,7 @@ import javax.inject.Named;
 
 import net.acardenas.wedding.dataservice.UserDataService;
 import net.acardenas.wedding.dataservice.UserDataServiceLocator;
+import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.dataservice.entity.User;
 
 import org.primefaces.model.LazyDataModel;
@@ -25,11 +27,10 @@ public class UserBean implements Serializable
     private UserDataService<User> userService;
     private LazyDataModel<User> lazyDataModel;
     
-    // Creating new user
     private User newUser = new User();
-    // Selected user that will be updated
     private User selectedUser = new User();
     private User[] selectedUsers; 
+    private List<Role> roleList;
     
     /**
      * Initializing Data Access Service for LazyUserDataModel class
@@ -104,5 +105,17 @@ public class UserBean implements Serializable
     public void setNewUser(User newUser) {
             this.newUser = newUser; 
     }
+
+    public List<Role> getRoleList()
+    {
+        return roleList;
+    }
+
+    public void setRoleList(List<Role> aRoleList)
+    {
+        roleList = aRoleList;
+    }
+    
+    
 
 }
