@@ -14,12 +14,19 @@ package net.acardenas.wedding.backend.ejb;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import net.acardenas.wedding.backend.UserService;
 import net.acardenas.wedding.backend.UserServiceLocator;
 import net.acardenas.wedding.backend.impl.UserServiceImpl;
+import net.acardenas.wedding.dataservice.RoleDataService;
+import net.acardenas.wedding.dataservice.RoleDataServiceLocator;
+import net.acardenas.wedding.dataservice.UserDataService;
+import net.acardenas.wedding.dataservice.UserDataServiceLocator;
+import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.dataservice.entity.User;
 
 @Remote(UserService.class)
@@ -28,19 +35,28 @@ public class UserServiceEJB
     implements UserService
 {
     private UserService delegate;
+    
+    @EJB( mappedName = RoleDataServiceLocator.JNDI_NAME )
+    private RoleDataService roleDataService;
+    
+    @EJB( mappedName = UserDataServiceLocator.JNDI_NAME )
+    private UserDataService<User, Integer> userDataService;
+
+    @PostConstruct
+    void init()
+    {
+        UserServiceImpl myUserServiceImpl = new UserServiceImpl();
+        myUserServiceImpl.setUserDataService(userDataService);
+        myUserServiceImpl.setRoleDataService(roleDataService);
+        delegate = myUserServiceImpl;
+    }
 
     @Override
     public void createUser(User aUser)
     {
-        // empty
+        delegate.createUser(aUser);
     }
     
-    void init()
-    {
-        UserServiceImpl myUserServiceImpl = new UserServiceImpl();
-        delegate = myUserServiceImpl;
-    }
-
     @Override
     public User readUser(Integer anId)
     {
@@ -54,14 +70,32 @@ public class UserServiceEJB
     }
 
     @Override
+    public List<User> readUsers(int aStart, int aEnd)
+    {
+        return delegate.readUsers(aStart, aEnd);
+    }
+
+    @Override
     public User updateUser(User aUser)
     {
         return delegate.updateUser(aUser);
     }
 
     @Override
-    public boolean deleteUser(User aUser)
+    public void deleteUser(User aUser)
     {
-        return delegate.deleteUser(aUser);
+        delegate.deleteUser(aUser);
+    }
+
+    @Override
+    public List<Role> readRoles()
+    {
+        return delegate.readRoles();
+    }
+
+    @Override
+    public int countTotalRecord()
+    {
+        return delegate.countTotalRecord();
     }
 }

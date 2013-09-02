@@ -1,3 +1,15 @@
+// ---------------------------------------------------------------------------
+// COPYRIGHT Alejandro Cardenas, acardenas.net, Saltillo,Coah, MX 2013
+// All rights reserved.
+//
+// The Copyright to the computer program(s) herein is the property of
+// Alejandro Raul Cardenas
+// The program(s) may be used and/or copied only with the written
+// permission from Alejandro Cardenas, or in
+// accordance with the terms and conditions stipulated in the
+// agreement/contract under which the program(s) have been supplied.
+// ---------------------------------------------------------------------------
+
 package net.acardenas.wedding.web;
 
 import java.io.Serializable;
@@ -10,8 +22,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import net.acardenas.wedding.dataservice.UserDataService;
-import net.acardenas.wedding.dataservice.UserDataServiceLocator;
+import net.acardenas.wedding.backend.UserService;
+import net.acardenas.wedding.backend.UserServiceLocator;
 import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.dataservice.entity.User;
 
@@ -24,7 +36,7 @@ public class UserBean implements Serializable
 
     private static final long serialVersionUID = 7297659416873277642L;
     private @Inject transient Logger logger;
-    private UserDataService<User> userService;
+    private UserService userService;
     private LazyDataModel<User> lazyDataModel;
     
     private User newUser = new User();
@@ -40,6 +52,8 @@ public class UserBean implements Serializable
     public void init()
     {
         logger.log(Level.INFO, "UserController is initializing");
+        roleList = getDelegate().readRoles();
+        logger.info(roleList.toString());
         lazyDataModel = new LazyUserDataModel(getDelegate());
     }
     
@@ -48,11 +62,11 @@ public class UserBean implements Serializable
         return lazyDataModel;
     }
     
-    private synchronized UserDataService<User> getDelegate()
+    private synchronized UserService getDelegate()
     {
         if (userService == null)
         {
-            userService = UserDataServiceLocator.lookup();
+            userService = UserServiceLocator.lookup();
         }
         return userService;
     }
@@ -62,7 +76,8 @@ public class UserBean implements Serializable
      * @return 
      */
 
-    public User getSelectedUser() {  
+    public User getSelectedUser() 
+    {  
         return selectedUser;  
     }  
 
@@ -70,7 +85,8 @@ public class UserBean implements Serializable
      *
      * @param selectedUser
      */
-    public void setSelectedUser(User selectedUser) {  
+    public void setSelectedUser(User selectedUser) 
+    {  
             this.selectedUser = selectedUser;  
     } 
         
@@ -115,7 +131,4 @@ public class UserBean implements Serializable
     {
         roleList = aRoleList;
     }
-    
-    
-
 }

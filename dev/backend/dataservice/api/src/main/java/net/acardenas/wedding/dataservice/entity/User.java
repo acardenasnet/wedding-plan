@@ -22,6 +22,7 @@ import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
@@ -64,10 +65,10 @@ public class User extends BaseEntity
     @Column(length = 64)
     private String password;
 
-    @OneToOne(cascade = { CascadeType.ALL })
+    @OneToOne(cascade = { CascadeType.ALL }, fetch = FetchType.EAGER)
     private Address address;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "User_userid") }, inverseJoinColumns = { @JoinColumn(name = "Role_roleid") })
     private List<Role> roles;
 

@@ -14,6 +14,7 @@ package net.acardenas.wedding.backend;
 
 import java.util.List;
 
+import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.dataservice.entity.User;
 
 public interface UserService 
@@ -24,7 +25,19 @@ public interface UserService
 	
 	List<User> readUsers(List<Integer> anIds);
 	
+	/**
+	 * Read All Users Paging the retrieve queries.
+	 * @param aStart
+	 * @param aEnd
+	 * @return
+	 */
+	List<User> readUsers(int aStart, int aEnd);
+	
 	User updateUser(User aUser);
 	
-	boolean deleteUser(User aUser);
+	void deleteUser(User aUser);
+	
+	List<Role> readRoles();
+	
+	int countTotalRecord();
 }

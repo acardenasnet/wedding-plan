@@ -13,6 +13,7 @@
 package net.acardenas.wedding.dataservice;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -20,10 +21,13 @@ import javax.persistence.TypedQuery;
 
 import net.acardenas.wedding.dataservice.entity.User;
 
-public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
+public abstract class DataAccessService<T, K> 
+    implements DataAccessServiceBase<T, K>
 {
 
     private EntityManager entityManager;
+    
+    private Logger LOG = Logger.getLogger(DataAccessService.class.getName());
 
     /** Constructor . */
     public DataAccessService()
@@ -51,13 +55,13 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
     }
 
     @Override
-    public T find(Object id)
+    public T find(K id)
     {
         return this.entityManager.find(handles(), id);
     }
 
     @Override
-    public void delete(Object id)
+    public void delete(K id)
     {
         Object ref = this.entityManager.getReference(handles(), id);
         this.entityManager.remove(ref);
@@ -87,13 +91,7 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
         return true;
     }
 
-    /**
-     * Updates the entity instance
-     * 
-     * @param <T>
-     * @param t
-     * @return the object that is updated
-     */
+    @Override
     public T update(T item)
     {
         if (item instanceof User)
@@ -105,12 +103,13 @@ public abstract class DataAccessService<T> implements DataAccessServiceBase<T>
             }
         }
         return (T) this.entityManager.merge(item);
-
     }
     
     @Override
     public List<T> findWithNamedQuery(String namedQueryName) 
     {
+        LOG.info("findWithNamedQuery - " + namedQueryName );
+        LOG.info("findWithNamedQuery >" + entityManager.createNamedQuery(namedQueryName,handles()).getResultList());
         return entityManager.createNamedQuery(namedQueryName,handles()).getResultList();
     }    
 

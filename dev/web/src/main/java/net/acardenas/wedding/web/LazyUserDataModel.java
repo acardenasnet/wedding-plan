@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import net.acardenas.wedding.dataservice.UserDataService;
+import net.acardenas.wedding.backend.UserService;
 import net.acardenas.wedding.dataservice.entity.User;
 import net.acardenas.wedding.web.util.LazySorter;
 
@@ -28,13 +28,14 @@ public class LazyUserDataModel
     // Total row number
     private int rowCount;
     // Data Access Service for create read update delete operations
-    private UserDataService<User> crudService;
+    private UserService crudService;
     private final static Logger LOG = Logger.getLogger(LazyUserDataModel.class.getName());
     /**
      *
      * @param crudService
      */
-    public LazyUserDataModel(UserDataService<User> aCrudService) {
+    public LazyUserDataModel(UserService aCrudService) 
+    {
         crudService = aCrudService;
     }
 
@@ -53,13 +54,14 @@ public class LazyUserDataModel
         LOG.info("load");
         LOG.info("" + first);
         LOG.info("" + pageSize);
-        datasource = crudService.findWithNamedQuery(User.ALL, first, first + pageSize);
+        datasource = crudService.readUsers(first, first + pageSize);
         LOG.info(datasource.toString());
         // if sort field is not null then we sort the field according to sortfield and sortOrder parameter
-        if(sortField != null) {  
+        if(sortField != null) 
+        {  
             Collections.sort(datasource, new LazySorter(sortField, sortOrder));  
         } 
-        setRowCount(crudService.countTotalRecord(User.TOTAL));
+        setRowCount(crudService.countTotalRecord());
         LOG.info(datasource.toString());
         return datasource;
     }

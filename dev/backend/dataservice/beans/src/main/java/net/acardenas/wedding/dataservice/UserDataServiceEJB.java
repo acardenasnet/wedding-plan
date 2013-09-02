@@ -26,9 +26,9 @@ import net.acardenas.wedding.util.WeddingConstants;
 
 @Stateless(mappedName = UserDataServiceLocator.JNDI_NAME)
 @Remote(UserDataService.class)
-public class UserDataServiceEJB implements UserDataService<User>
+public class UserDataServiceEJB implements UserDataService<User, Integer>
 {
-    private UserDataService<User> delegate;
+    private UserDataService<User, Integer> delegate;
     private static final Logger LOG = Logger.getLogger(UserDataServiceEJB.class.getName());
     
     @PersistenceContext(name = WeddingConstants.PERSISTENCE_CONTEXT_NAME)
@@ -54,7 +54,7 @@ public class UserDataServiceEJB implements UserDataService<User>
     }
 
     @Override
-    public User find(Object anId)
+    public User find(Integer anId)
     {
         return delegate.find(anId);
     }
@@ -66,7 +66,7 @@ public class UserDataServiceEJB implements UserDataService<User>
     }
 
     @Override
-    public void delete(Object id)
+    public void delete(Integer id)
     {
         delegate.delete(id);
     }
@@ -89,5 +89,11 @@ public class UserDataServiceEJB implements UserDataService<User>
     public int countTotalRecord(String namedQueryName)
     {
         return delegate.countTotalRecord(namedQueryName);
+    }
+
+    @Override
+    public User update(User anEntity)
+    {
+        return delegate.update(anEntity);
     }
 }

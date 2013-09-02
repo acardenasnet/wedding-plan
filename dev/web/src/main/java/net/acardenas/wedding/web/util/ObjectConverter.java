@@ -25,7 +25,11 @@ public class ObjectConverter implements Converter {
 
     private static HashMap<String, Role> map = new HashMap<String, Role>();
     @Override
-    public Object getAsObject(FacesContext context, UIComponent component, String value) {
+    public Object getAsObject(
+            FacesContext context, 
+            UIComponent component, 
+            String value) 
+    {
         Role role = map.get(value);
         return role;
     }

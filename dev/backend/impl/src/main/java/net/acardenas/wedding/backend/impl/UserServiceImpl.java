@@ -13,19 +13,30 @@
 package net.acardenas.wedding.backend.impl;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import net.acardenas.wedding.backend.UserService;
+import net.acardenas.wedding.dataservice.RoleDataService;
 import net.acardenas.wedding.dataservice.UserDataService;
+import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.dataservice.entity.User;
 
 public class UserServiceImpl
     implements UserService
 {
-    private UserDataService<User> userDataService;
+    private UserDataService<User, Integer> userDataService;
     
-    public void setUserDataService(UserDataService<User> aUserDataService)
+    private RoleDataService roleDataService;
+    private Logger LOG = Logger.getLogger(UserServiceImpl.class.getName());
+    
+    public void setUserDataService(UserDataService<User, Integer> aUserDataService)
     {
         userDataService = aUserDataService;
+    }
+    
+    public void setRoleDataService(RoleDataService aRoleDataService)
+    {
+        roleDataService = aRoleDataService;
     }
 
     @Override
@@ -46,6 +57,12 @@ public class UserServiceImpl
         // TODO Auto-generated method stub
         return null;
     }
+    
+    @Override
+    public List<User> readUsers(int aStart, int aEnd)
+    {
+        return userDataService.findWithNamedQuery(User.ALL, aStart, aEnd);
+    }
 
     @Override
     public User updateUser(User aUser)
@@ -55,10 +72,22 @@ public class UserServiceImpl
     }
 
     @Override
-    public boolean deleteUser(User aUser)
+    public void deleteUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        return false;
+        userDataService.delete(aUser.getId());
     }
 
+    @Override
+    public List<Role> readRoles()
+    {
+        LOG.info("readRoles");
+        LOG.info(roleDataService.findWithNamedQuery(Role.ALL).toString());
+        return roleDataService.findWithNamedQuery(Role.ALL);
+    }
+
+    @Override
+    public int countTotalRecord()
+    {
+        return userDataService.countTotalRecord(User.TOTAL);
+    }
 }

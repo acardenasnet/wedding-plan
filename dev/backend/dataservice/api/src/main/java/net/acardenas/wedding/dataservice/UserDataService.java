@@ -12,7 +12,8 @@
 
 package net.acardenas.wedding.dataservice;
 
-public interface UserDataService<T> extends DataAccessServiceBase<T>
+public interface UserDataService<T, K> 
+    extends DataAccessServiceBase<T, K>
 {
     
 }

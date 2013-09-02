@@ -14,9 +14,7 @@ package net.acardenas.wedding.dataservice;
 
 import java.util.List;
 
-import javax.persistence.Query;
-
-public interface DataAccessServiceBase<T>
+public interface DataAccessServiceBase<T,K>
 {
     /**
      * Returns the type that is handled by this handler. This type is equal to
@@ -46,7 +44,7 @@ public interface DataAccessServiceBase<T>
      * @param id
      * @return
      */
-    T find(Object id);
+    T find(K id);
     
     /**
      * Removes the record that is associated with the entity instance
@@ -54,7 +52,16 @@ public interface DataAccessServiceBase<T>
      * @param type
      * @param id
      */
-    void delete(Object id);
+    void delete(K id);
+    
+    /**
+     * Updates the entity instance
+     * 
+     * @param <T>
+     * @param t
+     * @return the object that is updated
+     */
+    public T update(T anEntity);    
     
     /**
      * Returns the number of records that meet the criteria
