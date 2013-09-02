@@ -6,14 +6,20 @@ import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import net.acardenas.wedding.dataservice.entity.Role;
+import net.acardenas.wedding.util.WeddingConstants;
 
 @Remote( RoleDataService.class )
 @Stateless( mappedName = RoleDataServiceLocator.JNDI_NAME )
 public class RoleDataServiceEJB
     implements RoleDataService
 {
+    @PersistenceContext(name = WeddingConstants.PERSISTENCE_CONTEXT_NAME)
+    private EntityManager entityManager;
+    
     private RoleDataService delegate;
     private Logger LOG = Logger.getLogger(RoleDataServiceEJB.class.getName());
     
@@ -21,6 +27,7 @@ public class RoleDataServiceEJB
     void init()
     {
         RoleDataServiceImpl myRoleDataServiceImpl = new RoleDataServiceImpl();
+        myRoleDataServiceImpl.setEntityManager(entityManager);
         delegate = myRoleDataServiceImpl;
     }
 
@@ -61,7 +68,6 @@ public class RoleDataServiceEJB
     public List<Role> findWithNamedQuery(String namedQueryName)
     {
         LOG.info("findWithNamedQuery - " + delegate);
-        LOG.info(delegate.findWithNamedQuery(Role.ALL).toString());
         return delegate.findWithNamedQuery(Role.ALL);
     }
 

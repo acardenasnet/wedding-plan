@@ -12,69 +12,16 @@
 
 package net.acardenas.wedding.dataservice;
 
-import java.util.List;
-
 import net.acardenas.wedding.dataservice.entity.Role;
 
 public class RoleDataServiceImpl
+    extends DataAccessService<Role, Integer>
     implements RoleDataService
 {
 
     @Override
     public Class<Role> handles()
     {
-        // TODO Auto-generated method stub
-        return null;
+        return Role.class;
     }
-
-    @Override
-    public Role create(Role t)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public Role find(Integer id)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void delete(Integer id)
-    {
-        // TODO Auto-generated method stub
-        
-    }
-
-    @Override
-    public Role update(Role anEntity)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Role> findWithNamedQuery(String namedQueryName)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public List<Role> findWithNamedQuery(String namedQueryName, int start,
-            int end)
-    {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public int countTotalRecord(String namedQueryName)
-    {
-        // TODO Auto-generated method stub
-        return 0;
-    }
-
 }

@@ -109,7 +109,6 @@ public abstract class DataAccessService<T, K>
     public List<T> findWithNamedQuery(String namedQueryName) 
     {
         LOG.info("findWithNamedQuery - " + namedQueryName );
-        LOG.info("findWithNamedQuery >" + entityManager.createNamedQuery(namedQueryName,handles()).getResultList());
         return entityManager.createNamedQuery(namedQueryName,handles()).getResultList();
     }    
 
