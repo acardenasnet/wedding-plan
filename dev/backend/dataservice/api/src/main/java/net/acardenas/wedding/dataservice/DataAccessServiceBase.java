@@ -14,7 +14,7 @@ package net.acardenas.wedding.dataservice;
 
 import java.util.List;
 
-public interface DataAccessServiceBase<T,K>
+public interface DataAccessServiceBase<T, K>
 {
     /**
      * Returns the type that is handled by this handler. This type is equal to
@@ -29,61 +29,57 @@ public interface DataAccessServiceBase<T,K>
     /**
      * Stores an instance of the entity class in the database
      * 
-     * @param T
-     *            Object
+     * @param T Object
      * @return
      */
-    T create(T t);
+    T create(T anEntity);
     
     /**
      * Retrieves an entity instance that was previously persisted to the
      * database
      * 
-     * @param T
-     *            Object
-     * @param id
+     * @param anId
      * @return
      */
-    T find(K id);
+    T find(K anId);
     
     /**
      * Removes the record that is associated with the entity instance
      * 
-     * @param type
-     * @param id
+     * @param anId
      */
-    void delete(K id);
+    void delete(K anId);
     
     /**
      * Updates the entity instance
      * 
      * @param <T>
-     * @param t
+     * @param anEntity
      * @return the object that is updated
      */
     public T update(T anEntity);    
     
     /**
      * Returns the number of records that meet the criteria
-     * @param namedQueryName
+     * @param aNamedQueryName
      * @return List
      */
-    public List<T> findWithNamedQuery(String namedQueryName);
+    public List<T> findWithNamedQuery(String aNamedQueryName);
     
     /**
      * Returns the number of records that will be used with lazy loading / pagination 
-     * @param namedQueryName
+     * @param aNamedQueryName
      * @param start
      * @param end
      * @return List
      */
-    public List<T> findWithNamedQuery(String namedQueryName, int start, int end);
+    public List<T> findWithNamedQuery(String aNamedQueryName, int start, int end);
     
     /**
      * Returns the number of total records
-     * @param namedQueryName
+     * @param aNamedQueryName
      * @return int
      */
-    public int countTotalRecord(String namedQueryName);
+    public int countTotalRecord(String aNamedQueryName);
 
 }

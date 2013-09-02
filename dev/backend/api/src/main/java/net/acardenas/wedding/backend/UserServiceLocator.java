@@ -19,7 +19,7 @@ import net.acardenas.wedding.external.api.ServiceLocator;
 public class UserServiceLocator
 {
     /**
-     * The JNDI mapped name of the ItspService.
+     * The JNDI mapped name of the UserService.
      */
     public static final String JNDI_NAME = "ejb/UserService";
 
@@ -30,7 +30,7 @@ public class UserServiceLocator
 
     /**
      * lookup the service in the EJB JNDI.
-     * @return {@link ItspService}
+     * @return {@link UserService}
      * @throws MissingResourceException {@code}
      */
     public static UserService lookup() throws MissingResourceException

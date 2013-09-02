@@ -35,6 +35,7 @@ public class Address extends BaseEntity
 
     public Address()
     {
+        // empty
     }
 
     public String getStreet()

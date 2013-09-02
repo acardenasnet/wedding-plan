@@ -21,7 +21,6 @@ import javax.enterprise.inject.spi.InjectionPoint;
 @Default
 public class LoggerProducer
 {
-
     /**
      * @param injectionPoint
      * @return logger

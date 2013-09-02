@@ -33,28 +33,28 @@ public class WeddingPlannerException
     }
 
     /**
-     * @param message
+     * @param aMessage
      */
-    public WeddingPlannerException(String message)
+    public WeddingPlannerException(String aMessage)
     {
-        super(message);
+        super(aMessage);
     }
 
     /**
-     * @param cause
+     * @param aCause
      */
-    public WeddingPlannerException(Throwable cause)
+    public WeddingPlannerException(Throwable aCause)
     {
-        super(cause);
+        super(aCause);
     }
 
     /**
-     * @param message
-     * @param cause
+     * @param aMessage
+     * @param aCause
      */
-    public WeddingPlannerException(String message, Throwable cause)
+    public WeddingPlannerException(String aMessage, Throwable aCause)
     {
-        super(message, cause);
+        super(aMessage, aCause);
     }
 
 }

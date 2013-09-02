@@ -67,8 +67,7 @@ public class UserServiceImpl
     @Override
     public User updateUser(User aUser)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return userDataService.update(aUser);
     }
 
     @Override

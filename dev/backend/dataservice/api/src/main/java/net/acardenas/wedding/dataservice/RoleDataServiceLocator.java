@@ -2,7 +2,6 @@ package net.acardenas.wedding.dataservice;
 
 import java.util.MissingResourceException;
 
-import net.acardenas.wedding.dataservice.entity.Role;
 import net.acardenas.wedding.external.api.ServiceLocator;
 
 public class RoleDataServiceLocator

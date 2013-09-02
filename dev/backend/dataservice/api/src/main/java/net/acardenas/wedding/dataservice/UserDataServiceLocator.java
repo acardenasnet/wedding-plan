@@ -31,7 +31,7 @@ public class UserDataServiceLocator
 
     /**
      * lookup the service in the EJB JNDI.
-     * @return {@link ItspService}
+     * @return {@link UserDataService}
      * @throws MissingResourceException {@code}
      */
     public static UserDataService<User, Integer> lookup() throws MissingResourceException
