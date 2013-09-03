@@ -71,4 +71,10 @@ public interface UserService
 	 * @return Number of users into the data source.
 	 */
 	int countTotalRecord();
+	
+	/**
+	 * Remove a selected users.
+	 * @param aUsers array of users.
+	 */
+	void deleteUsers(User[] aUsers);
 }

@@ -19,6 +19,7 @@ import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 
@@ -131,4 +132,30 @@ public class UserBean implements Serializable
     {
         roleList = aRoleList;
     }
+    
+    /**
+     * Create, Update and Delete operations
+     */
+    public void doCreateUser() 
+    {
+        userService.createUser(newUser);
+    }
+        
+    /**
+     *
+     * @param actionEvent
+     */
+    public void doUpdateUser(ActionEvent actionEvent)
+    {
+        userService.updateUser(selectedUser);
+    }
+        
+    /**
+     *
+     * @param actionEvent
+     */
+    public void doDeleteUsers(ActionEvent actionEvent)
+    {
+        userService.deleteUsers(selectedUsers);
+    }    
 }

@@ -19,6 +19,12 @@ public class RoleDataServiceImpl
     implements RoleDataService
 {
 
+    /** Constructor. */
+    public RoleDataServiceImpl()
+    {
+        // empty
+    }
+    
     @Override
     public Class<Role> handles()
     {

@@ -14,7 +14,6 @@ package net.acardenas.wedding.dataservice;
 
 import java.util.MissingResourceException;
 
-import net.acardenas.wedding.dataservice.entity.User;
 import net.acardenas.wedding.external.api.ServiceLocator;
 
 public class UserDataServiceLocator
@@ -34,7 +33,7 @@ public class UserDataServiceLocator
      * @return {@link UserDataService}
      * @throws MissingResourceException {@code}
      */
-    public static UserDataService<User, Integer> lookup() throws MissingResourceException
+    public static UserDataService lookup() throws MissingResourceException
     {
         return ServiceLocator.lookup(JNDI_NAME, UserDataService.class);
     }

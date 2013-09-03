@@ -44,10 +44,9 @@ public class RoleDataServiceEJB
     }
 
     @Override
-    public Role find(Integer id)
+    public Role find(Integer anId)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.find(anId);
     }
 
     @Override

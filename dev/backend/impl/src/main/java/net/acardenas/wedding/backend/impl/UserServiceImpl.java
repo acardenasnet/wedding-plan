@@ -24,12 +24,12 @@ import net.acardenas.wedding.dataservice.entity.User;
 public class UserServiceImpl
     implements UserService
 {
-    private UserDataService<User, Integer> userDataService;
+    private UserDataService userDataService;
     
     private RoleDataService roleDataService;
     private Logger LOG = Logger.getLogger(UserServiceImpl.class.getName());
     
-    public void setUserDataService(UserDataService<User, Integer> aUserDataService)
+    public void setUserDataService(UserDataService aUserDataService)
     {
         userDataService = aUserDataService;
     }
@@ -88,5 +88,11 @@ public class UserServiceImpl
     public int countTotalRecord()
     {
         return userDataService.countTotalRecord(User.TOTAL);
+    }
+
+    @Override
+    public void deleteUsers(User[] aUsers)
+    {
+        // TODO Auto-generated method stub
     }
 }

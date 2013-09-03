@@ -118,8 +118,9 @@ public abstract class DataAccessService<T, K>
      * @param resultLimit
      * @return List
      */
-    public List findWithNamedQuery(String queryName, int resultLimit) {
-        return this.entityManager.createNamedQuery(queryName).
+    public List<T> findWithNamedQuery(String queryName, int resultLimit) 
+    {
+        return this.entityManager.createNamedQuery(queryName, handles()).
                 setMaxResults(resultLimit).
                 getResultList();
     }    
@@ -141,7 +142,8 @@ public abstract class DataAccessService<T, K>
     }
     
     @Override
-    public int countTotalRecord(String namedQueryName) {
+    public int countTotalRecord(String namedQueryName) 
+    {
         Query query = entityManager.createNamedQuery(namedQueryName);
         Number result = (Number) query.getSingleResult();
         return result.intValue();

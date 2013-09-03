@@ -40,7 +40,7 @@ public class UserServiceEJB
     private RoleDataService roleDataService;
     
     @EJB( mappedName = UserDataServiceLocator.JNDI_NAME )
-    private UserDataService<User, Integer> userDataService;
+    private UserDataService userDataService;
 
     @PostConstruct
     void init()
@@ -97,5 +97,11 @@ public class UserServiceEJB
     public int countTotalRecord()
     {
         return delegate.countTotalRecord();
+    }
+
+    @Override
+    public void deleteUsers(User[] aUsers)
+    {
+        delegate.deleteUsers(aUsers);
     }
 }

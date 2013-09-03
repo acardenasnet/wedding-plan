@@ -26,9 +26,9 @@ import net.acardenas.wedding.util.WeddingConstants;
 
 @Stateless(mappedName = UserDataServiceLocator.JNDI_NAME)
 @Remote(UserDataService.class)
-public class UserDataServiceEJB implements UserDataService<User, Integer>
+public class UserDataServiceEJB implements UserDataService
 {
-    private UserDataService<User, Integer> delegate;
+    private UserDataService delegate;
     private static final Logger LOG = Logger.getLogger(UserDataServiceEJB.class.getName());
     
     @PersistenceContext(name = WeddingConstants.PERSISTENCE_CONTEXT_NAME)

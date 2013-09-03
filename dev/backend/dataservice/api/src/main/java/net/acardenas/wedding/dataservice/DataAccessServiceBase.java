@@ -73,7 +73,7 @@ public interface DataAccessServiceBase<T, K>
      * @param end
      * @return List
      */
-    public List<T> findWithNamedQuery(String aNamedQueryName, int start, int end);
+    public List<T> findWithNamedQuery(String aNamedQueryName, int aStart, int anEnd);
     
     /**
      * Returns the number of total records
