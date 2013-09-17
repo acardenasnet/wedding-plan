@@ -14,6 +14,8 @@ package net.acardenas.wedding.dataservice;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+
 import net.acardenas.wedding.dataservice.entity.Guest;
 
 /**
@@ -29,6 +31,12 @@ public class GuestDataServiceEJB implements GuestDataService
     public GuestDataServiceEJB()
     {
         // empty
+    }
+    
+    @PostConstruct
+    void init()
+    {
+        
     }
 
     /* (non-Javadoc)
@@ -46,8 +54,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public Guest create(Guest anEntity)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.create(anEntity);
     }
 
     /* (non-Javadoc)
@@ -56,8 +63,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public Guest find(Integer anId)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.find(anId);
     }
 
     /* (non-Javadoc)
@@ -66,8 +72,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public void delete(Integer anId)
     {
-        // TODO Auto-generated method stub
-
+        delegate.delete(anId);
     }
 
     /* (non-Javadoc)
@@ -76,8 +81,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public Guest update(Guest anEntity)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.update(anEntity);
     }
 
     /* (non-Javadoc)
@@ -86,8 +90,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public List<Guest> findWithNamedQuery(String aNamedQueryName)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.findWithNamedQuery(aNamedQueryName);
     }
 
     /* (non-Javadoc)
@@ -97,8 +100,7 @@ public class GuestDataServiceEJB implements GuestDataService
     public List<Guest> findWithNamedQuery(String aNamedQueryName, int aStart,
             int anEnd)
     {
-        // TODO Auto-generated method stub
-        return null;
+        return delegate.findWithNamedQuery(aNamedQueryName, aStart, anEnd);
     }
 
     /* (non-Javadoc)
@@ -107,8 +109,7 @@ public class GuestDataServiceEJB implements GuestDataService
     @Override
     public int countTotalRecord(String aNamedQueryName)
     {
-        // TODO Auto-generated method stub
-        return 0;
+        return delegate.countTotalRecord(aNamedQueryName);
     }
 
 }
