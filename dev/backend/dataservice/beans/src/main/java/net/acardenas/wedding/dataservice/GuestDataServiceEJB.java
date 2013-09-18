@@ -15,8 +15,11 @@ package net.acardenas.wedding.dataservice;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 
 import net.acardenas.wedding.dataservice.entity.Guest;
+import net.acardenas.wedding.util.WeddingConstants;
 
 /**
  * @author acardenas
@@ -25,6 +28,9 @@ import net.acardenas.wedding.dataservice.entity.Guest;
 public class GuestDataServiceEJB implements GuestDataService
 {
 
+    @PersistenceContext(name = WeddingConstants.PERSISTENCE_CONTEXT_NAME)
+    private EntityManager entityManager;
+    
     private GuestDataService delegate;
     
     /** Constructor. */
@@ -36,7 +42,9 @@ public class GuestDataServiceEJB implements GuestDataService
     @PostConstruct
     void init()
     {
-        
+        GuestDataServiceImpl myGuestDataServiceImpl = new GuestDataServiceImpl();
+        myGuestDataServiceImpl.setEntityManager(entityManager);
+        delegate = myGuestDataServiceImpl;
     }
 
     /* (non-Javadoc)
