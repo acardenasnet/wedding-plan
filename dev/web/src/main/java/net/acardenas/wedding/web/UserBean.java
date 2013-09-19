@@ -147,6 +147,7 @@ public class UserBean implements Serializable
      */
     public void doUpdateUser(ActionEvent actionEvent)
     {
+        logger.info("doUpdateUser " + selectedUser);
         userService.updateUser(selectedUser);
     }
         
@@ -156,6 +157,7 @@ public class UserBean implements Serializable
      */
     public void doDeleteUsers(ActionEvent actionEvent)
     {
+        logger.info("doDeleteUsers " + selectedUsers);
         userService.deleteUsers(selectedUsers);
     }    
 }

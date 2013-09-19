@@ -67,6 +67,7 @@ public class UserServiceImpl
     @Override
     public User updateUser(User aUser)
     {
+        LOG.info("updateUser");
         return userDataService.update(aUser);
     }
 
@@ -93,6 +94,9 @@ public class UserServiceImpl
     @Override
     public void deleteUsers(User[] aUsers)
     {
-        // TODO Auto-generated method stub
+        for (User myUser : aUsers)
+        {
+            userDataService.delete(myUser.getId());
+        }
     }
 }
