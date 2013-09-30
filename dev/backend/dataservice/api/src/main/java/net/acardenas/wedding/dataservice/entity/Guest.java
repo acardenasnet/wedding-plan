@@ -14,12 +14,22 @@ package net.acardenas.wedding.dataservice.entity;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @Entity
 @DiscriminatorValue(value = "G")
+@NamedQueries
+({ 
+    @NamedQuery(name = Guest.ALL, query = "SELECT g FROM Guest g "),
+    @NamedQuery(name = Guest.TOTAL, query = "SELECT COUNT(g) FROM Guest g") 
+})
 public class Guest extends User
 {
     private static final long serialVersionUID = -3009856100292961183L;
+    
+    public final static String ALL = "Guest.populateGuest";
+    public final static String TOTAL = "Guest.countGuestsTotal";
     
     private int quantity;
     

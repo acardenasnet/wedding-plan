@@ -81,7 +81,6 @@ public class UserServiceImpl
     public List<Role> readRoles()
     {
         LOG.info("readRoles");
-        LOG.info(roleDataService.findWithNamedQuery(Role.ALL).toString());
         return roleDataService.findWithNamedQuery(Role.ALL);
     }
 
