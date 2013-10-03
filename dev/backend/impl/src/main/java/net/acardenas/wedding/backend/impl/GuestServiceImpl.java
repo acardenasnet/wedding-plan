@@ -27,26 +27,26 @@ public class GuestServiceImpl
     }
 
     @Override
-    public void createGuest(Guest aGuest)
+    public void create(Guest aGuest)
     {
         guestDataService.create(aGuest);
     }
 
     @Override
-    public Guest readGuest(Integer anId)
+    public Guest read(Integer anId)
     {
         return guestDataService.find(anId);
     }
 
     @Override
-    public List<Guest> readGuests(List<Integer> anIds)
+    public List<Guest> read(List<Integer> anIds)
     {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public List<Guest> readGuests(int aStart, int aEnd)
+    public List<Guest> read(int aStart, int aEnd)
     {
         return guestDataService.findWithNamedQuery(
                 Guest.ALL, 
@@ -55,13 +55,13 @@ public class GuestServiceImpl
     }
 
     @Override
-    public Guest updateGuest(Guest aGuest)
+    public Guest update(Guest aGuest)
     {
         return guestDataService.update(aGuest);
     }
 
     @Override
-    public void deleteGuest(Guest aGuest)
+    public void delete(Guest aGuest)
     {
         guestDataService.delete(aGuest.getId());
     }
@@ -73,12 +73,11 @@ public class GuestServiceImpl
     }
 
     @Override
-    public void deleteGuests(Guest[] aGuests)
+    public void delete(Guest[] aGuests)
     {
         for (Guest myGuest : aGuests)
         {
             guestDataService.delete(myGuest.getId());
         }
     }
-
 }

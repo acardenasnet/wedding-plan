@@ -6,16 +6,18 @@ import java.util.logging.Logger;
 import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 
+import net.acardenas.wedding.backend.CrudServiceBase;
+
 import org.primefaces.model.LazyDataModel;
 
-public abstract class BaseBean< CrudServiceBase extends S , E> implements Serializable
+public abstract class BaseBean<S extends CrudServiceBase<E, K>, E, K> implements Serializable
 {
 
     private static final long serialVersionUID = 6882728156467941395L;
     protected @Inject
     transient Logger logger;
     private S service;
-    private LazyDataModel<E> lazyDataModel;
+    protected LazyDataModel<E> lazyDataModel;
 
     private Class<E> myClass;
     private E newEntity;
@@ -32,6 +34,7 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
     {
         try
         {
+            myClass = (Class<E>) ((E) new Object()).getClass();
             return myClass.newInstance();
         }
         catch (InstantiationException e)
@@ -45,6 +48,18 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
         return null;
     }
     
+    protected abstract S getDelegate();
+    
+    public LazyDataModel<E> getLazyDataModel()
+    {
+        return lazyDataModel;
+    }
+
+    public void setLazyDataModel(LazyDataModel<E> lazyDataModel)
+    {
+        this.lazyDataModel = lazyDataModel;
+    }
+
     /**
      * Getters, Setters
      * @return 
@@ -62,7 +77,17 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
     {  
         selectedEntity = aSelectedEntity;  
     } 
-        
+    
+    public S getService()
+    {
+        return service;
+    }
+
+    public void setService(S aService)
+    {
+        this.service = aService;
+    }
+
     /**
      *
      * @return
@@ -76,7 +101,7 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
      *
      * @param aSelectedEntities
      */
-    public void setSelectedUsers(E[] aSelectedEntities) 
+    public void setSelectedEntities(E[] aSelectedEntities) 
     {  
         selectedEntities = aSelectedEntities;  
     }
@@ -87,14 +112,14 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
      */
     public E getNewEntity() 
     {
-            return newEntity;
+        return newEntity;
     }
 
     /**
      *
      * @param aNewEntity
      */
-    public void setNewUser(E aNewEntity) 
+    public void setNewEntity(E aNewEntity) 
     {
         newEntity = aNewEntity; 
     }
@@ -102,28 +127,28 @@ public abstract class BaseBean< CrudServiceBase extends S , E> implements Serial
     /**
      * Create, Update and Delete operations
      */
-    public void doCreateEntity() 
+    public void doCreate() 
     {
-        userService.createUser(newEntity);
+        getDelegate().create(newEntity);
     }
         
     /**
      *
      * @param actionEvent
      */
-    public void doUpdateUser(ActionEvent actionEvent)
+    public void doUpdate(ActionEvent actionEvent)
     {
         logger.info("doUpdateUser " + selectedEntity);
-        userService.updateUser(selectedEntity);
+        getDelegate().update(selectedEntity);
     }
         
     /**
      *
      * @param actionEvent
      */
-    public void doDeleteUsers(ActionEvent actionEvent)
+    public void doDelete(ActionEvent actionEvent)
     {
         logger.info("doDeleteUsers " + selectedEntities);
-        userService.deleteUsers(selectedEntities);
+        getDelegate().delete(selectedEntities);
     }    
 }

@@ -7,7 +7,7 @@
      <ui:define name="content">
          <h:form id="form">
                 <p:dataTable id="dataTable" var="user" value="#{guestBean.lazyDataModel}" styleClass="userDataTableStyle"
-                        paginator="true" rows="10" selection="#{guestBean.selectedUsers}"
+                        paginator="true" rows="10" selection="#{guestBean.selectedEntities}"
                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                         lazy="true" rowsPerPageTemplate="10,15,50">
                 <f:facet name="header">
@@ -19,7 +19,7 @@
                         <h:outputText value="Username" />
                     </f:facet>
                     <p:commandLink value="#{user.username}" update=":userDetailForm:display" oncomplete="userDialog.show()"  title="View">
-                        <f:setPropertyActionListener value="#{user}" target="#{guestBean.selectedUser}" />    
+                        <f:setPropertyActionListener value="#{user}" target="#{guestBean.selectedEntity}" />    
                     </p:commandLink>
                 </p:column>
 
@@ -45,46 +45,41 @@
                 </p:column>
                <f:facet name="footer">
                     <p:commandButton value="New User" oncomplete="newUserDialog.show()" icon="ui-icon-star" title="Creates new user"/>
-                    <p:commandButton value="Delete Users" actionListener="#{guestBean.doDeleteUsers}" update="dataTable" icon="ui-icon-trash"/>
+                    <p:commandButton value="Delete Users" actionListener="#{guestBean.doDelete}" update="dataTable" icon="ui-icon-trash"/>
                 </f:facet>
             </p:dataTable>
          </h:form>   
          
              
-             <p:dialog header="User Detail" widgetVar="userDialog" resizable="false" id="userDlg" > 
+             <p:dialog header="Guest Detail" widgetVar="userDialog" resizable="false" id="userDlg" > 
                <h:form id="userDetailForm">
                 <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">   
 			<h:outputText value="Username :"></h:outputText>
-                        <h:outputText value="#{guestBean.selectedUser.username}" />
+                        <h:outputText value="#{guestBean.selectedEntity.username}" />
 
 			<h:outputText value="First name :"></h:outputText>
-                        <h:inputText value="#{guestBean.selectedUser.firstname}" required="true" requiredMessage="Please Enter Name!"/>
+                        <h:inputText value="#{guestBean.selectedEntity.firstname}" required="true" requiredMessage="Please Enter Name!"/>
 
 			<h:outputText value="Last name :"></h:outputText>
-                        <h:inputText value="#{guestBean.selectedUser.lastname}" required="true" requiredMessage="Please Enter Lastname!"/>
+                        <h:inputText value="#{guestBean.selectedEntity.lastname}" required="true" requiredMessage="Please Enter Lastname!"/>
 
 			<h:outputText value="Email :"></h:outputText>
-			<h:inputText value="#{guestBean.selectedUser.email}"/>
+			<h:inputText value="#{guestBean.selectedEntity.email}"/>
                         
-                        <h:outputText value="Role :"></h:outputText>                        
-                        <p:selectManyMenu  id="newUserRole" required="true" value="#{guestBean.selectedUser.roles}" var="_role" itemValue="#{_role}" requiredMessage="A Role must be chosen!">
-                            <f:selectItems  value="#{guestBean.roleList}"  var="_role" itemValue="#{_role}" itemLabel="#{_role.rolename}"></f:selectItems>                               
-                            <f:converter converterId="net.acardenas.util.ObjectConverter" />
-                        </p:selectManyMenu>
 
 			<h:outputText value="Street Name :"></h:outputText>
-			<h:inputText value="#{guestBean.selectedUser.address.street}"/>
+			<h:inputText value="#{guestBean.selectedEntity.address.street}"/>
 
 			<h:outputText value="Suburb :"></h:outputText>
-			<h:inputText value="#{guestBean.selectedUser.address.suburb}"/>
+			<h:inputText value="#{guestBean.selectedEntity.address.suburb}"/>
 
 			<h:outputText value="City :"></h:outputText>
-			<h:inputText value="#{guestBean.selectedUser.address.city}"/>
+			<h:inputText value="#{guestBean.selectedEntity.address.city}"/>
 
 			<h:outputText value="Country :"></h:outputText>
-			<h:inputText value="#{guestBean.selectedUser.address.country}" />
+			<h:inputText value="#{guestBean.selectedEntity.address.country}" />
                     <f:facet name="footer">
-                            <p:commandButton value="Update" update=":form:dataTable, :growl"  oncomplete="handleSubmitRequest(xhr, status, args, 'userDlg','newUserForm'); " actionListener="#{guestBean.doUpdateUser}"/>
+                            <p:commandButton value="Update" update=":form:dataTable, :growl"  oncomplete="handleSubmitRequest(xhr, status, args, 'userDlg','newUserForm'); " actionListener="#{guestBean.doUpdate}"/>
                     </f:facet>
                 </p:panelGrid> 
              </h:form>
@@ -95,40 +90,35 @@
               <h:form id="newUserForm">
                 <p:panelGrid id="displayNewUser" columns="2" cellpadding="4" style="margin:0 auto;">   
 			<h:outputText value="Username :"></h:outputText>
-                        <p:inputText value="#{guestBean.newUser.username}" required="true" requiredMessage="Please Enter Username!"/>
+                        <p:inputText value="#{guestBean.newEntity.username}" required="true" requiredMessage="Please Enter Username!"/>
 
 			<h:outputText value="First name :"></h:outputText>
-                        <p:inputText value="#{guestBean.newUser.firstname}" required="true" requiredMessage="Please Enter Name!" />
+                        <p:inputText value="#{guestBean.newEntity.firstname}" required="true" requiredMessage="Please Enter Name!" />
 
 			<h:outputText value="Last name :"></h:outputText>
-                        <p:inputText value="#{guestBean.newUser.lastname}" required="true" requiredMessage="Please Enter Lastname!" />
+                        <p:inputText value="#{guestBean.newEntity.lastname}" required="true" requiredMessage="Please Enter Lastname!" />
 
                         <h:outputText value="Password :"></h:outputText>
-                        <p:inputText value="#{guestBean.newUser.password}" required="true" requiredMessage="Please Enter Password!" maxlength="16" >
+                        <p:inputText value="#{guestBean.newEntity.password}" required="true" requiredMessage="Please Enter Password!" maxlength="16" >
                             <f:converter converterId="net.acardenas.util.SHAConverter"></f:converter>
                         </p:inputText>
 
 			<h:outputText value="Email :"></h:outputText>
-			<p:inputText value="#{guestBean.newUser.email}"/>
-                        
-                        <h:outputText value="Role :"></h:outputText>                        
-                         <p:selectManyMenu  id="newUserRole" required="true"  value="#{guestBean.newUser.roles}" var="_role" itemValue="#{_role}" requiredMessage="A Role must be chosen!">
-                             <f:selectItems  value="#{guestBean.roleList}" var="_role" itemValue="#{_role}" itemLabel="#{_role.rolename}"></f:selectItems>                               
-                             <f:converter converterId="net.acardenas.util.ObjectConverter" />
-                         </p:selectManyMenu >
+			<p:inputText value="#{guestBean.newEntity.email}"/>
+
 			<h:outputText value="Street Name :"></h:outputText>
-			<p:inputText value="#{guestBean.newUser.address.street}" />
+			<p:inputText value="#{guestBean.newEntity.address.street}" />
 
 			<h:outputText value="Suburb :"></h:outputText>
-			<p:inputText value="#{guestBean.newUser.address.suburb}" />
+			<p:inputText value="#{guestBean.newEntity.address.suburb}" />
 
 			<h:outputText value="City :"></h:outputText>
-			<p:inputText value="#{guestBean.newUser.address.city}"/>
+			<p:inputText value="#{guestBean.newEntity.address.city}"/>
 
 			<h:outputText value="Country :"></h:outputText>
-			<p:inputText value="#{guestBean.newUser.address.country}"/>
+			<p:inputText value="#{guestBean.newEntity.address.country}"/>
                     <f:facet name="footer">
-                            <p:commandButton value="Submit" update=":form:dataTable, :growl"  oncomplete=" handleSubmitRequest(xhr, status, args, 'newUserDlg','newUserForm');" actionListener="#{guestBean.doCreateUser}"/>
+                            <p:commandButton value="Submit" update=":form:dataTable, :growl"  oncomplete=" handleSubmitRequest(xhr, status, args, 'newUserDlg','newUserForm');" actionListener="#{guestBean.doCreate}"/>
                             <p:commandButton type="reset" value="Reset"></p:commandButton>                            
                     </f:facet>
                 </p:panelGrid>  

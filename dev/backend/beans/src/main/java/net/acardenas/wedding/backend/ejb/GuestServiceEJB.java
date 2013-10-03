@@ -15,12 +15,14 @@ package net.acardenas.wedding.backend.ejb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import net.acardenas.wedding.backend.GuestService;
 import net.acardenas.wedding.backend.GuestServiceLocator;
 import net.acardenas.wedding.dataservice.entity.Guest;
 
+@Remote(GuestService.class)
 @Stateless( mappedName = GuestServiceLocator.JNDI_NAME )
 public class GuestServiceEJB
     implements GuestService
@@ -39,39 +41,39 @@ public class GuestServiceEJB
     }
 
     @Override
-    public void createGuest(Guest aGuest)
+    public void create(Guest aGuest)
     {
-        delegate.createGuest(aGuest);
+        delegate.create(aGuest);
     }
 
     @Override
-    public Guest readGuest(Integer anId)
+    public Guest read(Integer anId)
     {
-        return delegate.readGuest(anId);
+        return delegate.read(anId);
     }
 
     @Override
-    public List<Guest> readGuests(List<Integer> anIds)
+    public List<Guest> read(List<Integer> anIds)
     {
-        return delegate.readGuests(anIds);
+        return delegate.read(anIds);
     }
 
     @Override
-    public List<Guest> readGuests(int aStart, int aEnd)
+    public List<Guest> read(int aStart, int aEnd)
     {
-        return delegate.readGuests(aStart, aEnd);
+        return delegate.read(aStart, aEnd);
     }
 
     @Override
-    public Guest updateGuest(Guest aGuest)
+    public Guest update(Guest aGuest)
     {
-        return delegate.updateGuest(aGuest);
+        return delegate.update(aGuest);
     }
 
     @Override
-    public void deleteGuest(Guest aGuest)
+    public void delete(Guest aGuest)
     {
-        delegate.deleteGuest(aGuest);
+        delegate.delete(aGuest);
     }
 
     @Override
@@ -81,9 +83,9 @@ public class GuestServiceEJB
     }
 
     @Override
-    public void deleteGuests(Guest[] aGuests)
+    public void delete(Guest[] aGuests)
     {
-        delegate.deleteGuests(aGuests);
+        delegate.delete(aGuests);
     }
 
 }

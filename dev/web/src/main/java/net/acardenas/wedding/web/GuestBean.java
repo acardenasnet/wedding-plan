@@ -12,32 +12,24 @@
 
 package net.acardenas.wedding.web;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
-import javax.faces.event.ActionEvent;
-import javax.inject.Inject;
 import javax.inject.Named;
 
 import net.acardenas.wedding.backend.GuestService;
 import net.acardenas.wedding.backend.GuestServiceLocator;
-import net.acardenas.wedding.backend.UserService;
-import net.acardenas.wedding.backend.UserServiceLocator;
 import net.acardenas.wedding.dataservice.entity.Guest;
-import net.acardenas.wedding.dataservice.entity.Role;
-import net.acardenas.wedding.dataservice.entity.User;
-
-import org.primefaces.model.LazyDataModel;
 
 @Named
 @SessionScoped
-public class GuestBean extends BaseBean<GuestService, Guest>
+public class GuestBean extends BaseBean<GuestService, Guest, Integer>
 {
-    
+
+    private static final long serialVersionUID = 2297293679064300413L;
+
+
     /**
      * Initializing Data Access Service for LazyUserDataModel class
      * role list for UserContoller class
@@ -46,11 +38,11 @@ public class GuestBean extends BaseBean<GuestService, Guest>
     public void init()
     {
         logger.log(Level.INFO, "UserController is initializing");
-        setLazyDataModel(new LazyUserDataModel(getDelegate()));
+        lazyDataModel = new LazyGuestDataModel(getDelegate());
     }
     
     
-    private synchronized GuestService getDelegate()
+    protected synchronized GuestService getDelegate()
     {
         if (getService() == null)
         {
@@ -58,93 +50,5 @@ public class GuestBean extends BaseBean<GuestService, Guest>
         }
         return getService();
     }
- 
-    /**
-     * Getters, Setters
-     * @return 
-     */
-
-    public User getSelectedUser() 
-    {  
-        return selectedUser;  
-    }  
-
-    /**
-     *
-     * @param selectedUser
-     */
-    public void setSelectedUser(User selectedUser) 
-    {  
-            this.selectedUser = selectedUser;  
-    } 
-        
-    /**
-     *
-     * @return
-     */
-    public User[] getSelectedUsers() {  
-            return selectedUsers;  
-    }  
-        
-    /**
-     *
-     * @param selectedUsers
-     */
-    public void setSelectedUsers(User[] selectedUsers) {  
-            this.selectedUsers = selectedUsers;  
-    }
-
-    /**
-     *
-     * @return
-     */
-    public User getNewUser() {
-            return newUser;
-    }
-
-    /**
-     *
-     * @param newUser
-     */
-    public void setNewUser(User newUser) {
-            this.newUser = newUser; 
-    }
-
-    public List<Role> getRoleList()
-    {
-        return roleList;
-    }
-
-    public void setRoleList(List<Role> aRoleList)
-    {
-        roleList = aRoleList;
-    }
-    
-    /**
-     * Create, Update and Delete operations
-     */
-    public void doCreateUser() 
-    {
-        userService.createUser(newUser);
-    }
-        
-    /**
-     *
-     * @param actionEvent
-     */
-    public void doUpdateUser(ActionEvent actionEvent)
-    {
-        logger.info("doUpdateUser " + selectedUser);
-        userService.updateUser(selectedUser);
-    }
-        
-    /**
-     *
-     * @param actionEvent
-     */
-    public void doDeleteUsers(ActionEvent actionEvent)
-    {
-        logger.info("doDeleteUsers " + selectedUsers);
-        userService.deleteUsers(selectedUsers);
-    }    
+   
 }
