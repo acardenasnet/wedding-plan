@@ -16,6 +16,8 @@ import java.util.logging.Level;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.event.ActionEvent;
 import javax.inject.Named;
 
 import net.acardenas.wedding.backend.GuestService;
@@ -24,31 +26,93 @@ import net.acardenas.wedding.dataservice.entity.Guest;
 
 @Named
 @SessionScoped
-public class GuestBean extends BaseBean<GuestService, Guest, Integer>
+@ManagedBean
+public class GuestBean extends BaseBean<Guest, Integer>
 {
 
     private static final long serialVersionUID = 2297293679064300413L;
+    private Guest selectedEntity;
+    private Guest newEntity;
 
+    public GuestBean()
+    {
+        selectedEntity = new Guest();
+        newEntity = new Guest();
+    }
 
     /**
-     * Initializing Data Access Service for LazyUserDataModel class
-     * role list for UserContoller class
+     * Initializing Data Access Service for LazyUserDataModel class role list
+     * for UserContoller class
      */
     @PostConstruct
     public void init()
     {
-        logger.log(Level.INFO, "UserController is initializing");
+        logger.log(Level.INFO, "Controller is initializing");
         lazyDataModel = new LazyGuestDataModel(getDelegate());
     }
-    
-    
+
     protected synchronized GuestService getDelegate()
     {
         if (getService() == null)
         {
             setService(GuestServiceLocator.lookup());
         }
-        return getService();
+        return (GuestService) getService();
     }
-   
+
+    /**
+     * Getters, Setters
+     * 
+     * @return
+     */
+    public Guest getSelectedEntity()
+    {
+        return selectedEntity;
+    }
+
+    /**
+     * 
+     * @param aSelectedEntity
+     */
+    public void setSelectedEntity(Guest aSelectedEntity)
+    {
+        selectedEntity = aSelectedEntity;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public Guest getNewEntity()
+    {
+        return newEntity;
+    }
+
+    /**
+     * 
+     * @param aNewEntity
+     */
+    public void setNewEntity(Guest aNewEntity)
+    {
+        newEntity = aNewEntity;
+    }
+
+    /**
+     * Create, Update and Delete operations
+     */
+    public void doCreate()
+    {
+        getDelegate().create(newEntity);
+    }
+
+    /**
+     * 
+     * @param actionEvent
+     */
+    public void doUpdate(ActionEvent actionEvent)
+    {
+        logger.info("doUpdateGuest " + selectedEntity);
+        getDelegate().update(selectedEntity);
+    }
+
 }

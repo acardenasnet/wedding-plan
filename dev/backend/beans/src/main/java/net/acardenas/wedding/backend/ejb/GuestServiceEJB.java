@@ -15,11 +15,15 @@ package net.acardenas.wedding.backend.ejb;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.EJB;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
 
 import net.acardenas.wedding.backend.GuestService;
 import net.acardenas.wedding.backend.GuestServiceLocator;
+import net.acardenas.wedding.backend.impl.GuestServiceImpl;
+import net.acardenas.wedding.dataservice.GuestDataService;
+import net.acardenas.wedding.dataservice.GuestDataServiceLocator;
 import net.acardenas.wedding.dataservice.entity.Guest;
 
 @Remote(GuestService.class)
@@ -27,6 +31,9 @@ import net.acardenas.wedding.dataservice.entity.Guest;
 public class GuestServiceEJB
     implements GuestService
 {
+    @EJB(mappedName = GuestDataServiceLocator.JNDI_NAME)
+    private GuestDataService guestDataService;
+    
     private GuestService delegate;
 
     public GuestServiceEJB()
@@ -37,7 +44,9 @@ public class GuestServiceEJB
     @PostConstruct
     void init()
     {
-        
+        GuestServiceImpl myGuestServiceImpl = new GuestServiceImpl();
+        myGuestServiceImpl.setGuestDataService(guestDataService);
+        delegate = myGuestServiceImpl;
     }
 
     @Override

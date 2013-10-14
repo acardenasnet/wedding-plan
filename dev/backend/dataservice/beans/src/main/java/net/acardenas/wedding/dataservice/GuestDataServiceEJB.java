@@ -15,6 +15,8 @@ package net.acardenas.wedding.dataservice;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.ejb.Remote;
+import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
@@ -25,6 +27,8 @@ import net.acardenas.wedding.util.WeddingConstants;
  * @author acardenas
  *
  */
+@Remote(GuestDataService.class)
+@Stateless(mappedName = GuestDataServiceLocator.JNDI_NAME)
 public class GuestDataServiceEJB implements GuestDataService
 {
 

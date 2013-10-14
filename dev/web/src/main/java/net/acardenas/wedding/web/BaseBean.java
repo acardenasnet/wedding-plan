@@ -10,25 +10,19 @@ import net.acardenas.wedding.backend.CrudServiceBase;
 
 import org.primefaces.model.LazyDataModel;
 
-public abstract class BaseBean<S extends CrudServiceBase<E, K>, E, K> implements Serializable
+public abstract class BaseBean<E, K> implements Serializable
 {
 
     private static final long serialVersionUID = 6882728156467941395L;
     protected @Inject
     transient Logger logger;
-    private S service;
+    private CrudServiceBase<E, K> service;
     protected LazyDataModel<E> lazyDataModel;
 
     private Class<E> myClass;
-    private E newEntity;
-    private E selectedEntity;
-    private E[] selectedEntities;
 
-    public BaseBean()
-    {
-        selectedEntity = factoryEntity();
-        newEntity = factoryEntity();
-    }
+
+    private E[] selectedEntities;
     
     protected E factoryEntity()
     {
@@ -48,7 +42,7 @@ public abstract class BaseBean<S extends CrudServiceBase<E, K>, E, K> implements
         return null;
     }
     
-    protected abstract S getDelegate();
+    protected abstract CrudServiceBase<E, K> getDelegate();
     
     public LazyDataModel<E> getLazyDataModel()
     {
@@ -60,30 +54,30 @@ public abstract class BaseBean<S extends CrudServiceBase<E, K>, E, K> implements
         this.lazyDataModel = lazyDataModel;
     }
 
-    /**
-     * Getters, Setters
-     * @return 
-     */
-    public E getSelectedEntity() 
-    {  
-        return selectedEntity;  
-    }  
-
-    /**
-     *
-     * @param aSelectedEntity
-     */
-    public void setSelectedEntity(E aSelectedEntity) 
-    {  
-        selectedEntity = aSelectedEntity;  
-    } 
+//    /**
+//     * Getters, Setters
+//     * @return 
+//     */
+//    public E getSelectedEntity() 
+//    {  
+//        return selectedEntity;  
+//    }  
+//
+//    /**
+//     *
+//     * @param aSelectedEntity
+//     */
+//    public void setSelectedEntity(E aSelectedEntity) 
+//    {  
+//        selectedEntity = aSelectedEntity;  
+//    } 
     
-    public S getService()
+    public CrudServiceBase<E, K> getService()
     {
         return service;
     }
 
-    public void setService(S aService)
+    public void setService(CrudServiceBase<E, K> aService)
     {
         this.service = aService;
     }
@@ -106,41 +100,41 @@ public abstract class BaseBean<S extends CrudServiceBase<E, K>, E, K> implements
         selectedEntities = aSelectedEntities;  
     }
 
-    /**
-     *
-     * @return
-     */
-    public E getNewEntity() 
-    {
-        return newEntity;
-    }
-
-    /**
-     *
-     * @param aNewEntity
-     */
-    public void setNewEntity(E aNewEntity) 
-    {
-        newEntity = aNewEntity; 
-    }
+//    /**
+//     *
+//     * @return
+//     */
+//    public E getNewEntity() 
+//    {
+//        return newEntity;
+//    }
+//
+//    /**
+//     *
+//     * @param aNewEntity
+//     */
+//    public void setNewEntity(E aNewEntity) 
+//    {
+//        newEntity = aNewEntity; 
+//    }
     
-    /**
-     * Create, Update and Delete operations
-     */
-    public void doCreate() 
-    {
-        getDelegate().create(newEntity);
-    }
+//    /**
+//     * Create, Update and Delete operations
+//     */
+//    public void doCreate() 
+//    {
+//        getDelegate().create(newEntity);
+//    }
         
-    /**
-     *
-     * @param actionEvent
-     */
-    public void doUpdate(ActionEvent actionEvent)
-    {
-        logger.info("doUpdateUser " + selectedEntity);
-        getDelegate().update(selectedEntity);
-    }
+//    /**
+//     *
+//     * @param actionEvent
+//     */
+//    public void doUpdate(ActionEvent actionEvent)
+//    {
+//        logger.info("doUpdateUser " + selectedEntity);
+//        getDelegate().update(selectedEntity);
+//    }
         
     /**
      *

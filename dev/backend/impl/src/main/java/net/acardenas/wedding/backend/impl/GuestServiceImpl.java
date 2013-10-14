@@ -16,14 +16,14 @@ public class GuestServiceImpl
         // empty
     }
 
-    public GuestDataService getUserDataService()
+    public GuestDataService getGuestDataService()
     {
         return guestDataService;
     }
 
-    public void setUserDataService(GuestDataService aUserDataService)
+    public void setGuestDataService(GuestDataService aGuestDataService)
     {
-        guestDataService = aUserDataService;
+        guestDataService = aGuestDataService;
     }
 
     @Override
