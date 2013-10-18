@@ -49,7 +49,7 @@
                        This module only can be deployed if was purched to make the wedding planner.
                     </description>
                     <finalName>wedding_service</finalName>
-                    <version>5</version>
+                    <version>6</version>
                     <modules>
                         <ejbModule>
                           <groupId>net.acardenas.wedding.dataservice</groupId>
