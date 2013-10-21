@@ -34,7 +34,7 @@
         handling of file cobertura.ser broken. See also:
         http://www.mail-archive.com/users@maven.apache.org/msg58559.html 
         -->
-        <version>2.2</version>
+        <version>2.6</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -70,7 +70,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-eclipse-plugin</artifactId>
-        <version>2.5.1</version>
+        <version>2.9</version>
         <configuration>
           <wtpversion>1.5</wtpversion>
           <downloadSources>true</downloadSources>
@@ -104,7 +104,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-checkstyle-plugin</artifactId>
-        <version>2.1</version>
+        <version>2.10</version>
         <configuration>
           <configLocation>/home/intarcc/baselines/eclipseRdBasictestChecks.xml</configLocation>
         </configuration>
@@ -112,7 +112,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>findbugs-maven-plugin</artifactId>
-        <version>1.1.1</version>
+        <version>2.5.2</version>
         <configuration>
           <xmlOutput>true</xmlOutput>
           <effort>default</effort>
@@ -122,7 +122,7 @@
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <version>2.2</version>
+        <version>2.6</version>
         <configuration>
           <formats>
             <format>html</format>
