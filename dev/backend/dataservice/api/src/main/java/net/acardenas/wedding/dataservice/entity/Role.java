@@ -14,12 +14,14 @@ package net.acardenas.wedding.dataservice.entity;
 
 import java.util.List;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
+@Cacheable(value = true)
 @NamedQueries({@NamedQuery(name = Role.ALL, query = "SELECT r FROM Role r")})
 public class Role extends BaseEntity
 {

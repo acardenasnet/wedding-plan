@@ -22,7 +22,7 @@
                         <p:menuitem value="Logout" action="#{loginBean.logout}" icon="ui-icon-power"/>
                     </c:if>
                     <c:if test="#{request.getUserPrincipal() == null}">
-                        <p:menuitem value="Login" action="/Login.xhtml?faces-redirect=true" icon="ui-icon-power" />
+                        <p:menuitem value="Login" action="/login.xhtml?faces-redirect=true" icon="ui-icon-power" />
                     </c:if>
             </p:menu>
         </h:form>

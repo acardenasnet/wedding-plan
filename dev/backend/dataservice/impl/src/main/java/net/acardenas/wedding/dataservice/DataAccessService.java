@@ -15,6 +15,7 @@ package net.acardenas.wedding.dataservice;
 import java.util.List;
 import java.util.logging.Logger;
 
+import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
@@ -41,8 +42,9 @@ public abstract class DataAccessService<T, K>
     }
 
     public void setEntityManager(EntityManager anEntityManager)
-    {
+    {        
         entityManager = anEntityManager;
+//        entityManager.setProperty("javax.persistence.cache.retrieveMode", CacheRetrieveMode.USE);
     }    
 
     @Override
@@ -63,7 +65,7 @@ public abstract class DataAccessService<T, K>
     @Override
     public void delete(K id)
     {
-        Object ref = this.entityManager.getReference(handles(), id);
+        T ref = this.entityManager.getReference(handles(), id);
         this.entityManager.remove(ref);
     }
 

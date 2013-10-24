@@ -33,7 +33,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 
 @Entity
-@Cacheable
+@Cacheable(value = true)
 @Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.CHAR, name = "userType")
 @DiscriminatorValue(value = "U")

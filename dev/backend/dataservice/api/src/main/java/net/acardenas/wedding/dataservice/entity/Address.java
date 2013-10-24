@@ -12,10 +12,12 @@
 
 package net.acardenas.wedding.dataservice.entity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
+@Cacheable(value = true)
 public class Address extends BaseEntity
 {
 

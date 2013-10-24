@@ -12,12 +12,14 @@
 
 package net.acardenas.wedding.dataservice.entity;
 
+import javax.persistence.Cacheable;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
 @Entity
+@Cacheable(value = true)
 @DiscriminatorValue(value = "G")
 @NamedQueries
 ({ 

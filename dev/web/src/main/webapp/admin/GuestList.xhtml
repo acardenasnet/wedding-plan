@@ -16,7 +16,7 @@
                 <p:column selectionMode="multiple" style="width:18px" />  
                 <p:column  sortBy="#{user.username}">
                     <f:facet name="header">
-                        <h:outputText value="Username" />
+                        <h:outputText value="#{uitext['label.username']}" />
                     </f:facet>
                     <p:commandLink value="#{user.username}" update=":userDetailForm:display" oncomplete="userDialog.show()"  title="View">
                         <f:setPropertyActionListener value="#{user}" target="#{guestBean.selectedEntity}" />    
@@ -25,27 +25,35 @@
 
                 <p:column sortBy="#{user.firstname}">
                     <f:facet name="header">
-                        <h:outputText value="Firstname" />
+                        <h:outputText value="#{uitext['label.firstname']}" />
                     </f:facet>
                     <h:outputText value="#{user.firstname}" />
                 </p:column>
 
                 <p:column sortBy="#{user.lastname}">
                     <f:facet name="header">
-                        <h:outputText value="Lastname" />
+                        <h:outputText value="#{uitext['label.lastname']}" />
                     </f:facet>
                     <h:outputText value="#{user.lastname}" />
                 </p:column>
 
                 <p:column sortBy="#{user.email}">
                     <f:facet name="header">
-                        <h:outputText value="Email" />
+                        <h:outputText value="#{uitext['label.email']}" />
                     </f:facet>
                     <h:outputText value="#{user.email}" />
                 </p:column>
+                
+                <p:column sortBy="#{user.quantity}">
+                    <f:facet name="header">
+                        <h:outputText value="#{uitext['label.quantity']}" />
+                    </f:facet>
+                    <h:outputText value="#{user.quantity}" />
+                </p:column>      
+                          
                <f:facet name="footer">
-                    <p:commandButton value="New User" oncomplete="newUserDialog.show()" icon="ui-icon-star" title="Creates new user"/>
-                    <p:commandButton value="Delete Users" actionListener="#{guestBean.doDelete}" update="dataTable" icon="ui-icon-trash"/>
+                    <p:commandButton value="#{uitext['label.new_guest']}" oncomplete="newUserDialog.show()" icon="ui-icon-star" title="#{uitext['title.create_new_guest']}"/>
+                    <p:commandButton value="#{uitext['label.delete_guest']}" actionListener="#{guestBean.doDelete}" update="dataTable" icon="ui-icon-trash"/>
                 </f:facet>
             </p:dataTable>
          </h:form>   
@@ -54,13 +62,13 @@
              <p:dialog header="Guest Detail" widgetVar="userDialog" resizable="false" id="userDlg" > 
                <h:form id="userDetailForm">
                 <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">   
-			<h:outputText value="Username :"></h:outputText>
+			<h:outputText value="#{uitext['label.username']} :"></h:outputText>
                         <h:outputText value="#{guestBean.selectedEntity.username}" />
 
-			<h:outputText value="First name :"></h:outputText>
+			<h:outputText value="#{uitext['label.firstname']} :"></h:outputText>
                         <h:inputText value="#{guestBean.selectedEntity.firstname}" required="true" requiredMessage="Please Enter Name!"/>
 
-			<h:outputText value="Last name :"></h:outputText>
+			<h:outputText value="#{uitext['label.lastname']}:"></h:outputText>
                         <h:inputText value="#{guestBean.selectedEntity.lastname}" required="true" requiredMessage="Please Enter Lastname!"/>
 
 			<h:outputText value="Email :"></h:outputText>
@@ -78,6 +86,10 @@
 
 			<h:outputText value="Country :"></h:outputText>
 			<h:inputText value="#{guestBean.selectedEntity.address.country}" />
+			
+			<h:outputText value="Quantity :"></h:outputText>
+			<p:inputText value="#{guestBean.selectedEntity.quantity}"/>
+			
                     <f:facet name="footer">
                             <p:commandButton value="Update" update=":form:dataTable, :growl"  oncomplete="handleSubmitRequest(xhr, status, args, 'userDlg','newUserForm'); " actionListener="#{guestBean.doUpdate}"/>
                     </f:facet>
@@ -117,6 +129,9 @@
 
 			<h:outputText value="Country :"></h:outputText>
 			<p:inputText value="#{guestBean.newEntity.address.country}"/>
+			
+			<h:outputText value="Quantity :"></h:outputText>
+			<p:inputText value="#{guestBean.newEntity.quantity}"/>
                     <f:facet name="footer">
                             <p:commandButton value="Submit" update=":form:dataTable, :growl"  oncomplete=" handleSubmitRequest(xhr, status, args, 'newUserDlg','newUserForm');" actionListener="#{guestBean.doCreate}"/>
                             <p:commandButton type="reset" value="Reset"></p:commandButton>                            
