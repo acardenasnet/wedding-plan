@@ -15,7 +15,6 @@ package net.acardenas.wedding.dataservice;
 import java.util.List;
 import java.util.logging.Logger;
 
-import javax.persistence.CacheRetrieveMode;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
