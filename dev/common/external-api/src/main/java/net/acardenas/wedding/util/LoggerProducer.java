@@ -12,15 +12,15 @@
 
 package net.acardenas.wedding.util;
 
-import java.util.logging.Logger;
-
-import javax.enterprise.inject.Default;
 import javax.enterprise.inject.Produces;
 import javax.enterprise.inject.spi.InjectionPoint;
 
-@Default
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public class LoggerProducer
 {
+    java.util.logging.Logger LOG = java.util.logging.Logger.getLogger(LoggerProducer.class.getName());
     /**
      * @param injectionPoint
      * @return logger
@@ -28,6 +28,7 @@ public class LoggerProducer
     @Produces
     public Logger produceLogger(InjectionPoint injectionPoint)
     {
-        return Logger.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
+        LOG.info("TEST" + injectionPoint.getMember().getDeclaringClass());
+        return LoggerFactory.getLogger(injectionPoint.getMember().getDeclaringClass().getName());
     }
 }

@@ -16,6 +16,11 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
+	<properties>
+ <slf4j.version>1.7.5</slf4j.version>
+ <logback.version>1.0.13</logback.version>
+</properties>
+
 
 
   <dependencyManagement>
@@ -29,11 +34,6 @@
       <dependency>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>cobertura-maven-plugin</artifactId>
-        <!-- 
-        Do not use version 2.1, because in 2.1 is the 
-        handling of file cobertura.ser broken. See also:
-        http://www.mail-archive.com/users@maven.apache.org/msg58559.html 
-        -->
         <version>2.6</version>
         <scope>test</scope>
       </dependency>
@@ -45,6 +45,21 @@
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
     </dependency>
+ <dependency>
+  <groupId>org.slf4j</groupId>
+  <artifactId>slf4j-api</artifactId>
+  <version>${slf4j.version}</version>
+ </dependency>
+ <dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-classic</artifactId>
+  <version>${logback.version}</version>
+ </dependency>
+ <dependency>
+  <groupId>ch.qos.logback</groupId>
+  <artifactId>logback-core</artifactId>
+  <version>${logback.version}</version>
+ </dependency>
         <!-- 
         This plugin pulls in a lot of additional dependencies cluttering
         the Eclipse workspace. Leave it out until we actually use it.
