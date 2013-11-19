@@ -11,6 +11,7 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 		<class>net.acardenas.wedding.dataservice.entity.Role</class>
 		<class>net.acardenas.wedding.dataservice.entity.Address</class>
 		<class>net.acardenas.wedding.dataservice.entity.Guest</class>
+        <class>net.acardenas.wedding.dataservice.entity.ContractType</class>
 		<shared-cache-mode>ALL</shared-cache-mode>
 		<properties>
 			<property name="eclipselink.weaving" value="false"/>
