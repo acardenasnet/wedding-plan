@@ -19,8 +19,12 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.rmi.PortableRemoteObject;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 public final class ServiceLocator
 {
+    private static final Logger LOG = LoggerFactory.getLogger(ServiceLocator.class);
     private ServiceLocator()
     {
         // Empty
@@ -48,6 +52,7 @@ public final class ServiceLocator
             return lookup(aJndiName, aServiceClass, myCtx);
         } catch (NamingException exception)
         {
+            LOG.error("Failed to lookup:", exception);
             throw new MissingResourceException(
                     "Failed to lookup: " + aJndiName, aServiceClass.getName(),
                     aJndiName);

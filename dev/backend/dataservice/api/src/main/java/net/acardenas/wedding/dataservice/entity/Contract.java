@@ -17,7 +17,9 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,6 +35,9 @@ public class Contract
     private Date dateSign;
     private String description;
     private Double total;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name="CONTRACT_TYPE_ID")
+    private ContractType contractType;
     @OneToMany(orphanRemoval = true, 
             fetch = FetchType.LAZY)
     private List<Payment> payments;

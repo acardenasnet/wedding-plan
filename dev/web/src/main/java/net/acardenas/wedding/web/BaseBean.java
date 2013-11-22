@@ -33,11 +33,11 @@ public abstract class BaseBean<E, K> implements Serializable
         }
         catch (InstantiationException e)
         {
-            logger.severe("InstantiationException ");
+            logger.severe(e.getMessage());
         }
         catch (IllegalAccessException e)
         {
-            logger.severe("IllegalAccessException ");
+            logger.severe(e.getMessage());
         }
         return null;
     }
