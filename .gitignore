@@ -1,0 +1,6 @@
+target/
+.settings/
+*.project
+*.gitignore
+*.classpath
+*.checkclipse
